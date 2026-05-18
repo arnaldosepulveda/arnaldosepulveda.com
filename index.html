@@ -70,16 +70,15 @@
 </script>
 
 <style>
-  /* --- Reset --- */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* --- Custom properties --- */
   :root {
     --bg:         hsl(40, 30%, 97%);
     --fg:         hsl(220, 15%, 12%);
     --muted:      hsl(220, 10%, 45%);
     --accent:     hsl(200, 60%, 35%);
     --metrics-bg: rgba(14, 92, 133, 0.05);
+    --green:      hsl(155, 40%, 38%);
     --sans:       system-ui, -apple-system, "Segoe UI", sans-serif;
     --mono:       ui-monospace, "SF Mono", Menlo, monospace;
   }
@@ -91,12 +90,12 @@
       --muted:      hsl(220, 10%, 60%);
       --accent:     hsl(200, 70%, 65%);
       --metrics-bg: rgba(102, 196, 234, 0.07);
+      --green:      hsl(155, 40%, 58%);
     }
   }
 
   html { color-scheme: light dark; }
 
-  /* --- Base --- */
   body {
     font-family: var(--sans);
     font-size: 1.0625rem;
@@ -108,7 +107,6 @@
     padding: 4.5rem 1.5rem 6rem;
   }
 
-  /* --- Name --- */
   h1 {
     font-size: 2.5rem;
     font-weight: 600;
@@ -117,14 +115,12 @@
     margin-bottom: 0.5rem;
   }
 
-  /* --- Role subtitle --- */
   .role {
     font-size: 1.0625rem;
     color: var(--muted);
     margin-bottom: 3rem;
   }
 
-  /* --- Section labels: mono uppercase (differentiator b) --- */
   h2 {
     font-family: var(--mono);
     font-size: 0.8125rem;
@@ -136,10 +132,8 @@
     margin-bottom: 1rem;
   }
 
-  /* --- Body text --- */
   p { margin-bottom: 1.5rem; }
 
-  /* --- Links --- */
   a {
     color: var(--accent);
     text-decoration: underline;
@@ -149,13 +143,11 @@
 
   a:hover { text-decoration-thickness: 2px; }
 
-  /* Mono treatment for email address */
   a[href^="mailto"] {
     font-family: var(--mono);
     font-size: 0.9375rem;
   }
 
-  /* --- Lists --- */
   ul {
     padding-left: 1.25rem;
     margin-bottom: 1.5rem;
@@ -163,7 +155,6 @@
 
   li { margin-bottom: 0.5rem; }
 
-  /* --- Metrics block --- */
   .metrics {
     font-family: var(--mono);
     font-size: 0.875rem;
@@ -174,7 +165,20 @@
     border-radius: 0 3px 3px 0;
   }
 
-  /* --- Footer --- */
+  .remediation {
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    padding: 0.75rem 1rem;
+    margin-top: 0.75rem;
+    border-left: 2px solid var(--green);
+    background: rgba(46, 160, 67, 0.06);
+    border-radius: 0 3px 3px 0;
+    color: var(--muted);
+  }
+
+  .remediation strong { color: var(--green); font-weight: 600; }
+
   .footer {
     font-size: 0.875rem;
     color: var(--muted);
@@ -182,7 +186,6 @@
     margin-bottom: 0;
   }
 
-  /* --- Responsive --- */
   @media (max-width: 480px) {
     body {
       padding-left: 1rem;
@@ -208,12 +211,21 @@
 
   <p class="metrics">Eval baseline (KDAT-001B, 2026-04-11): P@1 0.75, MRR 0.79, adversarial ACL 8/8 blocked, fail-closed 5/6.</p>
 
+  <p class="remediation"><strong>FC-005 remediation deployed 2026-05-17</strong> (v0.5.2-fc005): pre-retrieval domain scope guard refusing out-of-corpus queries. Sealed re-eval pending KDAT-002.</p>
+
+  <h2>Recent (May 2026)</h2>
+  <ul>
+    <li><a href="https://getkeystone.ai/blog/provana-acutecare/">Provana AcuteCare</a> &mdash; clinical copilot with role-based action guardrails. Boston AI Tinkerers Generative UI Hackathon, May 9, 2026.</li>
+    <li><a href="https://github.com/arnaldosepulveda/governed-incident-agent">governed-incident-agent</a> &mdash; agentic incident response interface with per-action RBAC and audit trail. Same hackathon, solo build.</li>
+  </ul>
+
   <h2>Find me</h2>
   <ul>
     <li><a href="https://www.linkedin.com/in/arnaldosepulveda/">LinkedIn</a></li>
     <li><a href="https://github.com/arnaldosepulveda">GitHub</a> (personal)</li>
     <li><a href="https://github.com/getkeystone">GitHub</a> (Keystone org)</li>
     <li><a href="https://getkeystone.ai/">getkeystone.ai</a> (project)</li>
+    <li><a href="https://getkeystone.ai/blog/">Keystone Blog</a></li>
     <li><a href="mailto:arnaldo@getkeystone.ai">arnaldo@getkeystone.ai</a></li>
   </ul>
 
