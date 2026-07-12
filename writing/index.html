@@ -3,94 +3,157 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Writing &mdash; Arnaldo Sepulveda</title>
-<meta name="description" content="Notes on AI governance, governed retrieval, and on-premises LLM deployment.">
+<title>Writing — Arnaldo Sepulveda</title>
+<meta name="description" content="Notes on governed AI, retrieval, evaluation, auditability, and system design — from building Keystone, a governed AI platform for regulated industries.">
 <meta name="author" content="Arnaldo Sepulveda">
 <link rel="canonical" href="https://arnaldosepulveda.com/writing/">
 
+<meta property="og:type" content="website">
+<meta property="og:title" content="Writing — Arnaldo Sepulveda">
+<meta property="og:description" content="Notes on governed AI, retrieval, evaluation, auditability, and system design.">
+<meta property="og:url" content="https://arnaldosepulveda.com/writing/">
+<meta property="og:image" content="https://arnaldosepulveda.com/og.png">
+
+<link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+
 <style>
-  :root { color-scheme: light dark; }
-  * { box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    max-width: 720px;
-    margin: 4rem auto;
-    padding: 0 1.5rem;
-    line-height: 1.6;
-    color: #1a1a1a;
-    background: #fafafa;
-  }
-  @media (prefers-color-scheme: dark) {
-    body { color: #e8e8e8; background: #111; }
-    a { color: #7dd3fc; }
-    .meta, .footer { color: #aaa; }
-    .entry { border-bottom-color: #222; }
-  }
-  h1 { font-size: 2rem; margin-bottom: 0.25rem; line-height: 1.2; }
-  .subtitle { color: #555; margin-bottom: 3rem; font-size: 1.05rem; }
-  a { color: #0369a1; text-decoration: none; }
-  a:hover { text-decoration: underline; }
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
 
-  .entry {
-    padding: 1.75rem 0;
-    border-bottom: 1px solid #e5e5e5;
-  }
-  .entry:last-child { border-bottom: none; }
+  @font-face { font-family:'Fraunces'; font-style:normal; font-weight:500 600; font-display:swap; src:url('/fonts/fraunces.woff2') format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  @font-face { font-family:'Inter'; font-style:normal; font-weight:400 600; font-display:swap; src:url('/fonts/inter.woff2') format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  @font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:400 500; font-display:swap; src:url('/fonts/jetbrainsmono.woff2') format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
 
-  .meta {
-    font-family: ui-monospace, "SF Mono", Menlo, monospace;
-    font-size: 0.78rem;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 0.4rem;
-  }
-  .entry h2 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-  }
-  .entry h2 a { color: inherit; }
-  .entry h2 a:hover { color: #0369a1; text-decoration: underline; }
-  .entry p {
-    font-size: 0.95rem;
-    color: #555;
-    line-height: 1.65;
-    margin: 0;
-  }
-  @media (prefers-color-scheme: dark) {
-    .entry p { color: #b8b8b8; }
+  :root{
+    --paper:#F4F1E8; --paper-2:#EDE8DB; --ink:#1A1D21; --ink-soft:#3F454C; --ink-mute:#6B6F76;
+    --rule:#C9C2B2; --rule-soft:#D8D2C4; --teal:#2E5D5C; --teal-2:#3E7A78; --teal-soft:rgba(46,93,92,.09);
+    --amber:#B27A2C; --amber-ink:#8A5A16; --amber-soft:rgba(178,122,44,.10); --focus:#3E7A78;
+    --font-head:'Fraunces', Georgia, serif;
+    --font-body:'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --font-mono:'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --measure:42rem; --pad-x:1.5rem;
   }
 
-  .footer { margin-top: 3rem; font-size: 0.85rem; color: #888; }
-  .footer a { color: inherit; text-decoration: underline; }
+  html { font-size:16px; color-scheme:light; scroll-behavior:smooth; }
+  body { font-family:var(--font-body); background:var(--paper); color:var(--ink-soft); line-height:1.68; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+  ::selection { background:var(--teal); color:var(--paper); }
+  .wrap { max-width:52rem; margin:0 auto; padding:0 var(--pad-x); }
 
-  @media (max-width: 480px) {
-    body { padding: 0 1rem; margin: 2rem auto; }
-    h1 { font-size: 1.6rem; }
+  a { color:var(--teal); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; text-decoration-color:var(--rule); transition:color .15s, text-decoration-color .15s; }
+  a:hover { color:var(--teal-2); text-decoration-color:var(--teal-2); }
+  :focus-visible { outline:2px solid var(--focus); outline-offset:3px; border-radius:2px; }
+  h1,h2,h3 { font-family:var(--font-head); color:var(--ink); font-weight:500; letter-spacing:-0.01em; line-height:1.16; }
+
+  .topbar { border-bottom:1px solid var(--rule); }
+  .topbar-inner { max-width:52rem; margin:0 auto; padding:0.9rem var(--pad-x); display:flex; align-items:baseline; justify-content:space-between; gap:1rem; }
+  .topbar .who { font-family:var(--font-mono); font-size:0.76rem; letter-spacing:0.04em; color:var(--ink); text-decoration:none; }
+  .topbar nav { display:flex; gap:1.1rem; }
+  .topbar nav a { font-family:var(--font-mono); font-size:0.72rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--ink-mute); text-decoration:none; }
+  .topbar nav a:hover { color:var(--teal); }
+
+  .head { padding:4rem 0 2.5rem; }
+  .head h1 { font-size:clamp(2rem,5vw,2.9rem); font-weight:500; letter-spacing:-0.02em; margin-bottom:0.9rem; }
+  .head .subtitle { font-size:1.08rem; color:var(--ink-soft); max-width:var(--measure); }
+
+  section { padding:2.5rem 0; border-top:1px solid var(--rule); }
+  .kicker { font-family:var(--font-mono); font-size:0.72rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--ink-mute); margin-bottom:1.25rem; }
+  .kicker b { color:var(--teal); font-weight:500; }
+
+  .entry { padding:1.5rem 0; border-bottom:1px solid var(--rule-soft); }
+  .entry:first-of-type { border-top:1px solid var(--rule-soft); }
+  .entry .meta { font-family:var(--font-mono); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-mute); margin-bottom:0.45rem; }
+  .entry h2 { font-size:1.2rem; font-weight:600; line-height:1.3; margin-bottom:0.4rem; }
+  .entry h2 a { color:inherit; text-decoration:none; }
+  .entry h2 a:hover { color:var(--teal); }
+  .entry p { font-size:0.95rem; color:var(--ink-mute); max-width:var(--measure); }
+
+  /* notebook / drafts */
+  .draft { padding:1.35rem 0; border-bottom:1px solid var(--rule-soft); }
+  .draft:first-of-type { border-top:1px solid var(--rule-soft); }
+  .draft h3 { font-size:1.08rem; font-weight:600; line-height:1.3; margin-bottom:0.35rem; }
+  .draft p { font-size:0.93rem; color:var(--ink-mute); max-width:var(--measure); }
+  .group-lead { max-width:var(--measure); color:var(--ink-soft); font-size:0.95rem; margin-bottom:1.25rem; }
+
+  .footer { margin-top:3rem; padding:2rem 0; border-top:1px solid var(--rule); font-family:var(--font-mono); font-size:0.8rem; color:var(--ink-mute); }
+  .footer a { text-decoration:none; }
+
+  @media (max-width:600px) {
+    :root { --pad-x:1.15rem; }
+    .head { padding:2.75rem 0 2rem; }
+    .draft { grid-template-columns:1fr; gap:0.3rem; }
   }
 </style>
 </head>
 <body>
 
-<main>
-  <h1>Writing</h1>
-  <p class="subtitle">Notes on AI governance, governed retrieval, and on-premises LLM deployment. Most engineering writing lives on the <a href="https://getkeystone.ai/blog/">Keystone AI blog</a>.</p>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="who">Arnaldo Sepulveda</a>
+    <nav aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="https://getkeystone.ai/">Keystone</a>
+      <a href="mailto:arnaldo@getkeystone.ai">Contact</a>
+    </nav>
+  </div>
+</header>
 
-  <article class="entry">
-    <div class="meta">May 9, 2026 &middot; Keystone AI Blog</div>
-    <h2><a href="https://getkeystone.ai/blog/provana-acutecare/">Provana AcuteCare: Clinical Copilot with Guardrails</a></h2>
-    <p>A clinical AI copilot with role-based action guardrails: three protocols, dynamic UI generation, four governance outcomes (Serve, Block, Route, Mutate). Built in six hours at the Boston AI Tinkerers hackathon with Sai Gopal Jarabana. The governance architecture moved from workplace safety to acute care medicine with zero structural changes.</p>
-  </article>
+<main class="wrap">
 
-  <article class="entry">
-    <div class="meta">May 9, 2026 &middot; Keystone AI Blog</div>
-    <h2><a href="https://getkeystone.ai/blog/governed-incident-response/">Governed Incident Response: Agentic UI with RBAC and Audit Trails</a></h2>
-    <p>An agentic incident response interface where every tool call is authorized by the user's role and logged to a tamper-evident audit trail. The agent generates different UI depending on what the user is allowed to do. CopilotKit + Next.js generative UI. Solo build for the AI Tinkerers Generative UI Hackathon, Boston.</p>
-  </article>
+  <div class="head">
+    <h1>Writing</h1>
+    <p class="subtitle">
+      Notes on governed AI, retrieval, evaluation, auditability, and system design — the lessons that
+      only surface after you have built and measured something. Longer engineering write-ups also live
+      on the <a href="https://getkeystone.ai/blog/">Keystone blog</a>.
+    </p>
+  </div>
 
-  <p class="footer">&larr; <a href="/">Back to arnaldosepulveda.com</a></p>
+  <section>
+    <div class="kicker"><b>Published</b></div>
+    <article class="entry">
+      <div class="meta">May 2026 · Keystone blog</div>
+      <h2><a href="https://getkeystone.ai/blog/provana-acutecare/">Provana AcuteCare: clinical copilot with guardrails</a></h2>
+      <p>A clinical copilot with role-based action guardrails — three protocols, generative UI, four governance outcomes (Serve, Block, Route, Mutate). The governance architecture moved from workplace safety to acute-care medicine with zero structural changes, which is the point: governance that generalizes is governance that was designed, not bolted on. Built at the Boston AI Tinkerers hackathon with Sai Gopal Jarabana.</p>
+    </article>
+    <article class="entry">
+      <div class="meta">May 2026 · Keystone blog</div>
+      <h2><a href="https://getkeystone.ai/blog/governed-incident-response/">Governed incident response: agentic UI with RBAC and audit trails</a></h2>
+      <p>An agentic incident-response interface where every tool call is authorized by the user's role and written to a tamper-evident audit trail, and the generated UI itself reflects what the user is permitted to do. Solo build for the AI Tinkerers Generative UI Hackathon.</p>
+    </article>
+  </section>
+
+  <section>
+    <div class="kicker"><b>Drafting</b></div>
+    <p class="group-lead">Outlined and being written, grounded in the Keystone build and its published eval artifacts.</p>
+    <div class="draft">
+      <h3>Regulated AI has a retrieval problem, not a knowledge problem</h3>
+      <p>The documents almost always exist. What is missing is finding the right one, proving it is the source, and enforcing who was allowed to see it. Reframing &ldquo;knowledge&rdquo; as authorization-first retrieval is what turns an impressive demo into something you can actually run in a regulated shop.</p>
+    </div>
+    <div class="draft">
+      <h3>What evaluation artifacts taught me that demos never could</h3>
+      <p>A demo is built to succeed; a real eval is built to embarrass the system. Adversarial ACL probes, out-of-scope refusals, and published failing runs moved the architecture more than any feature request did. The failing run is the artifact that matters.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker"><b>Planned</b></div>
+    <p class="group-lead">Queued. The argument is settled; the piece is not written yet.</p>
+    <div class="draft">
+      <h3>Keystone is not a chatbot demo</h3>
+      <p>The distance between a governed platform and a good demo is the unglamorous part: shared substrate, enforced authorization, reproducible evaluation, and an audit trail that survives scrutiny. A demo never has to have any of it. That is the entire difference.</p>
+    </div>
+    <div class="draft">
+      <h3>Why governed agents need visible control planes</h3>
+      <p>A tool-using agent is trustworthy only if you can see what it may do, what it did, and why — as explicit, authorized, logged state transitions. The control plane has to be a first-class object you can inspect, not an emergent property of a prompt.</p>
+    </div>
+    <div class="draft">
+      <h3>From Genesys to Keystone: enterprise rigor on the LLM substrate</h3>
+      <p>Severity-tier escalation, per-step validation, compliance logging, confidence-threshold refusal — the contact-center industry shipped these to production long before LLM products rediscovered them. What it takes to port that discipline onto the model, as architecture.</p>
+    </div>
+  </section>
+
+  <div class="footer">← <a href="/">arnaldosepulveda.com</a></div>
+
 </main>
 
 </body>

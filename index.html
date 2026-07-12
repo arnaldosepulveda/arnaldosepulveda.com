@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Arnaldo Sepulveda, Lead Engineer at Keystone Applied Intelligence</title>
-<meta name="description" content="Arnaldo Sepulveda. Lead Engineer at Keystone Applied Intelligence. Enterprise AI engineer building governed RAG and agent systems for regulated industries. 12+ years at Genesys.">
+<title>Arnaldo Sepulveda — Senior AI Engineer, governed AI infrastructure</title>
+<meta name="description" content="Arnaldo Sepulveda — Senior AI Engineer building governed AI infrastructure for regulated industries: authorization-first retrieval, governed multi-agent orchestration, reproducible evaluation, and fail-closed, auditable systems. Nearly 13 years at Genesys before building Keystone.">
 <meta name="author" content="Arnaldo Sepulveda">
 <meta name="google-site-verification" content="xf6O8zinKOOA4XrWFdBWYCNRRdKa3pCfS4PnyJUCzz0">
 <link rel="canonical" href="https://arnaldosepulveda.com/">
 
 <meta property="og:type" content="profile">
-<meta property="og:title" content="Arnaldo Sepulveda, Lead Engineer at Keystone Applied Intelligence">
-<meta property="og:description" content="Enterprise AI engineer. Governed RAG and agent systems for regulated industries. 12+ years Genesys.">
+<meta property="og:title" content="Arnaldo Sepulveda — Senior AI Engineer, governed AI infrastructure">
+<meta property="og:description" content="Building governed AI infrastructure for regulated industries: authorization-first retrieval, governed orchestration, reproducible evaluation, fail-closed and auditable by construction.">
 <meta property="og:url" content="https://arnaldosepulveda.com/">
 <meta property="og:image" content="https://arnaldosepulveda.com/og.png">
 <meta property="og:image:width" content="1200">
@@ -21,8 +21,8 @@
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://arnaldosepulveda.com/og.png">
-<meta name="twitter:title" content="Arnaldo Sepulveda, Lead Engineer at Keystone Applied Intelligence">
-<meta name="twitter:description" content="Enterprise AI engineer. Governed RAG and agent systems for regulated industries.">
+<meta name="twitter:title" content="Arnaldo Sepulveda — Senior AI Engineer, governed AI infrastructure">
+<meta name="twitter:description" content="Governed AI infrastructure for regulated industries. Authorization-first retrieval, governed orchestration, reproducible evaluation.">
 
 <script type="application/ld+json">
 {
@@ -31,8 +31,8 @@
   "name": "Arnaldo Sepulveda",
   "givenName": "Arnaldo",
   "familyName": "Sepulveda",
-  "jobTitle": "Lead Engineer",
-  "description": "Enterprise AI engineer. Governed RAG and agent systems for regulated industries.",
+  "jobTitle": "Senior AI Engineer",
+  "description": "Senior AI Engineer building governed AI infrastructure for regulated industries.",
   "worksFor": {
     "@type": "Organization",
     "name": "Keystone Applied Intelligence",
@@ -53,181 +53,344 @@
     "https://getkeystone.ai/"
   ],
   "knowsAbout": [
-    "Enterprise AI",
-    "Retrieval-Augmented Generation",
+    "Governed AI infrastructure",
+    "Authorization-first retrieval",
+    "Multi-agent orchestration",
+    "AI evaluation infrastructure",
+    "Audit trail architecture",
+    "Role-based access control",
     "On-premises LLM deployment",
-    "Information Retrieval",
-    "Role-Based Access Control",
-    "AI Governance",
-    "Audit Trail Architecture",
-    "Agentic Systems"
+    "Information retrieval",
+    "Fail-closed system design"
   ],
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "CA"
-  }
+  "address": { "@type": "PostalAddress", "addressCountry": "CA" }
 }
 </script>
+
+<link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --bg:         hsl(40, 30%, 97%);
-    --fg:         hsl(220, 15%, 12%);
-    --muted:      hsl(220, 10%, 45%);
-    --accent:     hsl(200, 60%, 35%);
-    --metrics-bg: rgba(14, 92, 133, 0.05);
-    --green:      hsl(155, 40%, 38%);
-    --sans:       system-ui, -apple-system, "Segoe UI", sans-serif;
-    --mono:       ui-monospace, "SF Mono", Menlo, monospace;
+  /* Self-hosted variable fonts (SIL OFL 1.1, latin subset) — see /fonts/OFL.txt */
+  @font-face { font-family:'Fraunces'; font-style:normal; font-weight:500 600; font-display:swap; src:url('/fonts/fraunces.woff2') format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  @font-face { font-family:'Inter'; font-style:normal; font-weight:400 600; font-display:swap; src:url('/fonts/inter.woff2') format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  @font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:400 500; font-display:swap; src:url('/fonts/jetbrainsmono.woff2') format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+
+  :root{
+    --paper:#F4F1E8; --paper-2:#EDE8DB; --ink:#1A1D21; --ink-soft:#3F454C; --ink-mute:#6B6F76;
+    --rule:#C9C2B2; --rule-soft:#D8D2C4;
+    --slate:#1F2428; --slate-ink:#E8E5DC; --slate-mute:#9BA0A5; --slate-rule:#3A4148;
+    --teal:#2E5D5C; --teal-2:#3E7A78; --teal-soft:rgba(46,93,92,.09);
+    --amber:#B27A2C; --amber-ink:#8A5A16; --amber-soft:rgba(178,122,44,.10);
+    --focus:#3E7A78;
+    --font-head:'Fraunces', Georgia, 'Times New Roman', serif;
+    --font-body:'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --font-mono:'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --measure:42rem; --pad-x:1.5rem;
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg:         hsl(220, 15%, 8%);
-      --fg:         hsl(40, 20%, 92%);
-      --muted:      hsl(220, 10%, 60%);
-      --accent:     hsl(200, 70%, 65%);
-      --metrics-bg: rgba(102, 196, 234, 0.07);
-      --green:      hsl(155, 40%, 58%);
-    }
-  }
+  html { font-size:16px; scroll-behavior:smooth; color-scheme:light; }
+  body { font-family:var(--font-body); background:var(--paper); color:var(--ink-soft); line-height:1.68; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; font-feature-settings:"kern","liga","calt"; }
+  ::selection { background:var(--teal); color:var(--paper); }
 
-  html { color-scheme: light dark; }
+  .wrap { max-width:52rem; margin:0 auto; padding:0 var(--pad-x); }
+  main { padding-bottom:5rem; }
 
-  body {
-    font-family: var(--sans);
-    font-size: 1.0625rem;
-    line-height: 1.6;
-    color: var(--fg);
-    background: var(--bg);
-    max-width: 36rem;
-    margin: 0 auto;
-    padding: 4.5rem 1.5rem 6rem;
-  }
+  a { color:var(--teal); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; text-decoration-color:var(--rule); transition:color .15s, text-decoration-color .15s; }
+  a:hover { color:var(--teal-2); text-decoration-color:var(--teal-2); }
+  :focus-visible { outline:2px solid var(--focus); outline-offset:3px; border-radius:2px; }
 
-  h1 {
-    font-size: 2.5rem;
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.5rem;
-  }
+  h1,h2,h3 { font-family:var(--font-head); color:var(--ink); font-weight:500; letter-spacing:-0.01em; line-height:1.14; }
+  strong { color:var(--ink); font-weight:600; }
+  p { max-width:var(--measure); }
 
-  .role {
-    font-size: 1.0625rem;
-    color: var(--muted);
-    margin-bottom: 3rem;
-  }
+  /* --- top bar --- */
+  .topbar { border-bottom:1px solid var(--rule); }
+  .topbar-inner { max-width:52rem; margin:0 auto; padding:0.9rem var(--pad-x); display:flex; align-items:baseline; justify-content:space-between; gap:1rem; }
+  .topbar .who { font-family:var(--font-mono); font-size:0.76rem; letter-spacing:0.04em; color:var(--ink); text-decoration:none; }
+  .topbar nav { display:flex; gap:1.1rem; }
+  .topbar nav a { font-family:var(--font-mono); font-size:0.72rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--ink-mute); text-decoration:none; }
+  .topbar nav a:hover { color:var(--teal); }
 
-  h2 {
-    font-family: var(--mono);
-    font-size: 0.8125rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    color: var(--muted);
-    margin-top: 3rem;
-    margin-bottom: 1rem;
-  }
+  /* --- hero --- */
+  .hero { padding:5rem 0 3.75rem; }
+  .hero .name { font-size:clamp(2.3rem,6vw,3.6rem); font-weight:500; line-height:1.02; letter-spacing:-0.02em; margin-bottom:1.1rem; }
+  .hero .pitch { font-size:clamp(1.15rem,2.4vw,1.4rem); color:var(--ink); font-family:var(--font-head); font-weight:500; line-height:1.3; max-width:34rem; margin-bottom:1.5rem; }
+  .hero .intro { font-size:1.05rem; color:var(--ink-soft); max-width:var(--measure); }
+  .proof-links { margin-top:2rem; display:flex; flex-wrap:wrap; gap:0.5rem 0.6rem; }
+  .proof-links a { font-family:var(--font-mono); font-size:0.76rem; letter-spacing:0.01em; text-decoration:none; color:var(--ink-soft); border:1px solid var(--rule); border-radius:5px; padding:0.42rem 0.75rem; transition:border-color .15s, background .15s, color .15s; }
+  .proof-links a:hover { border-color:var(--teal); background:var(--teal-soft); color:var(--teal); }
+  .proof-links a.primary { border-color:var(--teal); color:var(--teal); }
 
-  p { margin-bottom: 1.5rem; }
+  /* --- sections --- */
+  section { padding:3.25rem 0; border-top:1px solid var(--rule); }
+  .kicker { font-family:var(--font-mono); font-size:0.72rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--ink-mute); margin-bottom:1.15rem; }
+  .kicker b { color:var(--teal); font-weight:500; }
+  section > h2 { font-size:clamp(1.5rem,2.8vw,1.9rem); margin-bottom:1.1rem; }
+  section > p { color:var(--ink-soft); }
+  section > p + p { margin-top:1rem; }
 
-  a {
-    color: var(--accent);
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
-  }
+  /* components list (Keystone) */
+  .components { margin-top:2rem; border-top:1px solid var(--rule-soft); }
+  .comp { display:grid; grid-template-columns:8.5rem 1fr; gap:0.6rem 1.6rem; padding:1.15rem 0; border-bottom:1px solid var(--rule-soft); }
+  .comp .k { font-family:var(--font-mono); }
+  .comp .k .n { font-size:0.86rem; color:var(--ink); font-weight:500; }
+  .comp .k .t { display:block; margin-top:0.3rem; font-size:0.64rem; text-transform:uppercase; letter-spacing:0.09em; color:var(--teal); }
+  .comp .d { font-size:0.95rem; color:var(--ink-soft); }
+  .comp .d a { font-family:var(--font-mono); font-size:0.82rem; }
 
-  a:hover { text-decoration-thickness: 2px; }
+  /* substrate slate note */
+  .substrate { margin-top:1.75rem; background:var(--slate); color:var(--slate-ink); border-radius:8px; padding:1.5rem 1.6rem; }
+  .substrate .lbl { font-family:var(--font-mono); font-size:0.68rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--slate-mute); margin-bottom:0.85rem; }
+  .substrate ul { list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:0.1rem 1.75rem; }
+  .substrate li { font-family:var(--font-mono); font-size:0.8rem; color:var(--slate-ink); padding:0.45rem 0; border-top:1px solid var(--slate-rule); }
 
-  a[href^="mailto"] {
-    font-family: var(--mono);
-    font-size: 0.9375rem;
-  }
+  /* lessons */
+  .lessons { margin-top:1.5rem; counter-reset:lesson; }
+  .lesson { padding:1.25rem 0; border-bottom:1px solid var(--rule-soft); }
+  .lesson:first-child { border-top:1px solid var(--rule-soft); }
+  .lesson h3 { font-size:1.12rem; font-weight:600; margin-bottom:0.4rem; display:flex; gap:0.7rem; align-items:baseline; }
+  .lesson h3::before { counter-increment:lesson; content:counter(lesson,decimal-leading-zero); font-family:var(--font-mono); font-size:0.78rem; color:var(--amber-ink); font-weight:500; flex-shrink:0; }
+  .lesson p { font-size:0.96rem; color:var(--ink-mute); margin-left:1.9rem; }
 
-  ul {
-    padding-left: 1.25rem;
-    margin-bottom: 1.5rem;
-  }
+  /* writing teaser */
+  .writing-list { margin-top:1.5rem; border-top:1px solid var(--rule-soft); }
+  .warticle { padding:1.1rem 0; border-bottom:1px solid var(--rule-soft); }
+  .warticle .meta { font-family:var(--font-mono); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-mute); margin-bottom:0.3rem; }
+  .warticle a.t { font-family:var(--font-head); font-weight:600; font-size:1.05rem; color:var(--ink); text-decoration:none; }
+  .warticle a.t:hover { color:var(--teal); }
+  .warticle p { font-size:0.9rem; color:var(--ink-mute); margin-top:0.35rem; }
+  .more { margin-top:1.4rem; font-family:var(--font-mono); font-size:0.8rem; }
 
-  li { margin-bottom: 0.5rem; }
+  /* proof metrics */
+  .metrics { font-family:var(--font-mono); font-size:0.8rem; line-height:1.7; color:var(--ink-soft); padding:1rem 1.15rem; border-left:2px solid var(--teal); background:var(--paper-2); border-radius:0 5px 5px 0; margin-top:1.5rem; }
+  .metrics b { color:var(--ink); font-weight:600; }
+  .artifacts { margin-top:1.5rem; display:grid; grid-template-columns:1fr 1fr; gap:0.4rem 1.75rem; }
+  .artifacts a { font-family:var(--font-mono); font-size:0.82rem; text-decoration:none; color:var(--ink-soft); padding:0.5rem 0; border-top:1px solid var(--rule-soft); display:block; }
+  .artifacts a:hover { color:var(--teal); }
+  .artifacts a .desc { color:var(--ink-mute); }
 
-  .metrics {
-    font-family: var(--mono);
-    font-size: 0.875rem;
-    line-height: 1.6;
-    padding: 0.875rem 1rem;
-    border-left: 2px solid var(--accent);
-    background: var(--metrics-bg);
-    border-radius: 0 3px 3px 0;
-  }
+  /* contact */
+  .contact p { color:var(--ink-soft); }
+  .contact .lines { margin-top:1.4rem; font-family:var(--font-mono); font-size:0.86rem; line-height:2; }
+  .contact .lines a { text-decoration:none; }
+  .footer-note { margin-top:2.5rem; font-family:var(--font-mono); font-size:0.72rem; color:var(--ink-mute); }
 
-  .remediation {
-    font-family: var(--mono);
-    font-size: 0.8125rem;
-    line-height: 1.65;
-    padding: 0.75rem 1rem;
-    margin-top: 0.75rem;
-    border-left: 2px solid var(--green);
-    background: rgba(46, 160, 67, 0.06);
-    border-radius: 0 3px 3px 0;
-    color: var(--muted);
-  }
-
-  .remediation strong { color: var(--green); font-weight: 600; }
-
-  .footer {
-    font-size: 0.875rem;
-    color: var(--muted);
-    margin-top: 4.5rem;
-    margin-bottom: 0;
-  }
-
-  @media (max-width: 480px) {
-    body {
-      padding-left: 1rem;
-      padding-right: 1rem;
-      padding-top: 3rem;
-    }
-    h1 { font-size: 2rem; }
+  @media (max-width:600px) {
+    :root { --pad-x:1.15rem; }
+    .hero { padding:3rem 0 2.75rem; }
+    section { padding:2.5rem 0; }
+    .topbar nav { gap:0.85rem; }
+    .comp { grid-template-columns:1fr; gap:0.35rem; }
+    .substrate ul { grid-template-columns:1fr; }
+    .artifacts { grid-template-columns:1fr; }
+    .lesson p { margin-left:0; }
   }
 </style>
 </head>
 <body>
 
-<main>
-  <h1>Arnaldo Sepulveda</h1>
-  <p class="role">Lead Engineer, <a href="https://getkeystone.ai/">Keystone Applied Intelligence</a></p>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="who">Arnaldo Sepulveda</a>
+    <nav aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="/writing/">Writing</a>
+      <a href="https://getkeystone.ai/">Keystone</a>
+      <a href="mailto:arnaldo@getkeystone.ai">Contact</a>
+    </nav>
+  </div>
+</header>
 
-  <p>Enterprise AI engineer. I build governed retrieval and agent systems for regulated industries: on-premises deployment, evidence-backed answers, query-time role-based access control, and tamper-evident audit trails.</p>
+<main class="wrap">
 
-  <p>Before Keystone, I spent 12+ years at Genesys delivering enterprise contact center platforms for regulated and public sector customers. MScE in Electrical Engineering from the University of New Brunswick, with a thesis applying machine learning to smart grid load control.</p>
+  <!-- Hero -->
+  <section class="hero" style="border-top:none">
+    <h1 class="name">Arnaldo Sepulveda</h1>
+    <p class="pitch">Senior AI Engineer building governed AI infrastructure for regulated industries.</p>
+    <p class="intro">
+      I build AI systems for environments where a wrong answer, an unauthorized retrieval, or an
+      unaudited action carries real consequence. That means <strong>authorization-first retrieval,
+      governed multi-agent orchestration, reproducible evaluation, and fail-closed behavior</strong> —
+      running on customer-controlled infrastructure with local models. For the last ~18 months I have
+      been building that thesis as a platform, <a href="https://getkeystone.ai/">Keystone</a>.
+    </p>
+    <div class="proof-links">
+      <a class="primary" href="https://getkeystone.ai/">getkeystone.ai</a>
+      <a href="https://demo.getkeystone.ai/">Live demo</a>
+      <a href="https://github.com/getkeystone">GitHub · Keystone</a>
+      <a href="https://github.com/arnaldosepulveda">GitHub · personal</a>
+      <a href="https://www.linkedin.com/in/arnaldosepulveda/">LinkedIn</a>
+      <a href="mailto:arnaldo@getkeystone.ai">arnaldo@getkeystone.ai</a>
+    </div>
+  </section>
 
-  <h2>Current work</h2>
-  <p>Keystone: a governed RAG and agent platform. Public technical project and live demo at <a href="https://getkeystone.ai/">getkeystone.ai</a>. The agent layer applies the same governance model to a tool-using agent: tool authorization by role, action audit trails, human-in-the-loop approval gates.</p>
+  <!-- Current work -->
+  <section id="work">
+    <div class="kicker"><b>01</b> &nbsp;Current work</div>
+    <h2>Keystone: a governed AI platform, not a RAG demo</h2>
+    <p>
+      Keystone began as governed retrieval and grew into a platform. The interesting problem was never
+      "answer the question" — it was doing so under constraints that regulated work actually imposes:
+      prove the evidence, enforce who may see what, refuse when the ground is uncertain, and leave a
+      record that survives scrutiny. Those constraints are enforced in architecture — the retrieval
+      flow, the orchestration layer, the database model, the audit chain — not in a prompt.
+    </p>
+    <p>
+      Underneath the workloads is a shared governance substrate: a <strong>PostgreSQL agent registry</strong>
+      for identity and roles, a task-lifecycle and orchestration layer, event-driven coordination over
+      NATS JetStream, a dispatch abstraction that keeps agents interchangeable, and sealed evaluation
+      artifacts. Build governance once, inherit it everywhere.
+    </p>
 
-  <p class="metrics">Eval baselines: governed retrieval (keystone-core/retrieval-v1, 2026-04-11), P@1 0.75, MRR 0.79, adversarial ACL 8/8 blocked, fail-closed 5/6. Governed agent extension (keystone-core/agent-v1, 2026-05-20), 186 cases across 12 categories, 0 failures.</p>
+    <div class="substrate">
+      <div class="lbl">Shared substrate</div>
+      <ul>
+        <li>Agent identity &amp; roles (PostgreSQL registry)</li>
+        <li>Task lifecycle &amp; orchestration</li>
+        <li>Event-driven coordination (NATS JetStream)</li>
+        <li>Dispatch abstraction</li>
+        <li>Sealed evaluation artifacts</li>
+        <li>Tamper-evident audit chain</li>
+      </ul>
+    </div>
 
-  <h2>Recent (May 2026)</h2>
-  <ul>
-    <li><a href="https://getkeystone.ai/blog/provana-acutecare/">Provana AcuteCare</a> &mdash; clinical copilot with role-based action guardrails. Boston AI Tinkerers Generative UI Hackathon, May 9, 2026.</li>
-    <li><a href="https://github.com/arnaldosepulveda/governed-incident-agent">governed-incident-agent</a> &mdash; agentic incident response interface with per-action RBAC and audit trail. Same hackathon, solo build.</li>
-  </ul>
+    <div class="components">
+      <div class="comp">
+        <div class="k"><span class="n">Engage</span><span class="t">Conversational</span></div>
+        <div class="d">Governed conversational agents for regulated customer interaction — severity-tier escalation, per-step evidence gating, human-in-the-loop routing. <a href="https://github.com/getkeystone/keystone-engage">keystone-engage</a></div>
+      </div>
+      <div class="comp">
+        <div class="k"><span class="n">Counsel</span><span class="t">Retrieval</span></div>
+        <div class="d">Authorization-first retrieval for high-consequence content — query-time RBAC, evidence-backed answers, fail-closed refusal, factual-consistency scoring. <a href="https://github.com/getkeystone/keystone-counsel">keystone-counsel</a></div>
+      </div>
+      <div class="comp">
+        <div class="k"><span class="n">Verify</span><span class="t">Evaluation</span></div>
+        <div class="d">Reproducible evaluation infrastructure — the harness and methodology that turn capability claims into sealed, versioned artifacts. <a href="https://github.com/getkeystone/keystone-verify">keystone-verify</a></div>
+      </div>
+      <div class="comp">
+        <div class="k"><span class="n">Ledger</span><span class="t">Proof</span></div>
+        <div class="d">Evaluation lineage and public proof artifacts — baselines, remediations, and the failing-to-passing history behind the claims. <a href="https://github.com/getkeystone/keystone-ledger">keystone-ledger</a></div>
+      </div>
+    </div>
+  </section>
 
-  <h2>Find me</h2>
-  <ul>
-    <li><a href="https://www.linkedin.com/in/arnaldosepulveda/">LinkedIn</a></li>
-    <li><a href="https://github.com/arnaldosepulveda">GitHub</a> (personal)</li>
-    <li><a href="https://github.com/getkeystone">GitHub</a> (Keystone org)</li>
-    <li><a href="https://getkeystone.ai/">getkeystone.ai</a> (project)</li>
-    <li><a href="https://getkeystone.ai/blog/">Keystone Blog</a></li>
-    <li><a href="mailto:arnaldo@getkeystone.ai">arnaldo@getkeystone.ai</a></li>
-  </ul>
+  <!-- What I've learned -->
+  <section id="learned">
+    <div class="kicker"><b>02</b> &nbsp;What I&rsquo;ve learned</div>
+    <h2>Positions earned by implementation</h2>
+    <div class="lessons">
+      <div class="lesson">
+        <h3>Regulated orgs have a retrieval problem, not a knowledge problem</h3>
+        <p>The documents almost always exist. What is missing is the ability to find the right one, prove it is the source, and show who was allowed to see it. Framing it as retrieval — not "knowledge" — is what makes it tractable and governable.</p>
+      </div>
+      <div class="lesson">
+        <h3>Evaluation should be able to embarrass the system, not flatter it</h3>
+        <p>An eval that only passes is marketing. The useful ones are built to surface failure — adversarial access probes, out-of-scope queries, fail-closed cases — and the failing runs get published next to the passing ones. That is where the real design feedback comes from.</p>
+      </div>
+      <div class="lesson">
+        <h3>Governance has to be structural, not a prompt instruction</h3>
+        <p>A rule that lives only in a prompt can be reworded away. Access control belongs in the retrieval path and the database; refusal belongs outside the model; the audit record belongs in an append-only chain. If a control can be argued with, it is not a control.</p>
+      </div>
+      <div class="lesson">
+        <h3>Agents need visible control planes and auditable state transitions</h3>
+        <p>A tool-using agent is only trustworthy if you can see what it is allowed to do, what it did, and why — as explicit, authorized, logged state transitions. The control plane should be a first-class, inspectable object, not an emergent property of a prompt.</p>
+      </div>
+      <div class="lesson">
+        <h3>Local, on-prem constraints improve architectural clarity</h3>
+        <p>Building for customer-controlled infrastructure with local models removes the cloud API as a crutch. You are forced to be explicit about cost, latency, failure modes, and data boundaries — and the architecture gets clearer for it.</p>
+      </div>
+    </div>
+  </section>
 
-  <p class="footer">Based in Canada.</p>
+  <!-- Writing -->
+  <section id="writing">
+    <div class="kicker"><b>03</b> &nbsp;Writing</div>
+    <h2>Notes from building the thing</h2>
+    <p>
+      I write about governed AI, retrieval, evaluation, auditability, and system design — the lessons
+      that only show up once you have implemented and measured something. Writing is a first-class part
+      of this site, not an afterthought.
+    </p>
+    <div class="writing-list">
+      <div class="warticle">
+        <div class="meta">May 2026 · Keystone blog</div>
+        <a class="t" href="https://getkeystone.ai/blog/provana-acutecare/">Provana AcuteCare: clinical copilot with guardrails</a>
+        <p>The same governance model — Serve, Block, Route, Mutate — carried from workplace safety to acute-care medicine with no structural change. Built at the Boston AI Tinkerers hackathon.</p>
+      </div>
+      <div class="warticle">
+        <div class="meta">May 2026 · Keystone blog</div>
+        <a class="t" href="https://getkeystone.ai/blog/governed-incident-response/">Governed incident response: agentic UI with RBAC and audit trails</a>
+        <p>Every tool call authorized by role and written to a tamper-evident log; the interface itself changes with what the user is permitted to do.</p>
+      </div>
+    </div>
+    <p class="more">→ <a href="/writing/">Writing index &amp; notebook</a></p>
+  </section>
+
+  <!-- Background -->
+  <section id="background">
+    <div class="kicker"><b>04</b> &nbsp;Background</div>
+    <h2>From enterprise contact centers to governed AI</h2>
+    <p>
+      Before Keystone I spent <strong>nearly 13 years at Genesys</strong>, building the AI intelligence
+      layer of enterprise contact centers for regulated and public-sector customers. That work — knowledge
+      retrieval, chat, e-services, contact intelligence — ran in environments that demanded production
+      reliability, security controls, and the ability to prove what happened, when, and who authorized it.
+    </p>
+    <p>
+      The contact-center industry solved severity-tier escalation, per-step validation, compliance
+      logging, confidence-threshold refusal, and policy-aware routing long before LLM products
+      rediscovered these needs. Keystone is, in large part, me carrying that operational rigor onto the
+      LLM substrate — as architecture, not as a slide. I hold an MScE in Electrical Engineering from the
+      University of New Brunswick, with a thesis applying machine learning to smart-grid load control.
+    </p>
+  </section>
+
+  <!-- Proof -->
+  <section id="proof">
+    <div class="kicker"><b>05</b> &nbsp;Proof &amp; selected artifacts</div>
+    <h2>What is public now</h2>
+    <p>
+      I try to make claims that map to something you can inspect. The eval baselines below are published,
+      with their methodology and lineage, in the <a href="https://github.com/getkeystone/keystone-ledger">ledger</a>.
+    </p>
+    <p class="metrics">
+      Governed retrieval — <b>keystone-core/retrieval-v1</b> (2026-04-11): P@1 <b>0.75</b>, MRR <b>0.79</b>,
+      adversarial ACL <b>8/8 blocked</b>, fail-closed <b>5/6</b>, Alberta OHS safety corpus.<br>
+      Governed agent extension — <b>keystone-core/agent-v1</b> (2026-05-20): <b>186 eval cases</b>,
+      12 categories, <b>0 failures</b>; failing precursor run published alongside.
+    </p>
+    <div class="artifacts">
+      <a href="https://getkeystone.ai/"><b>getkeystone.ai</b> <span class="desc">— platform &amp; live demo</span></a>
+      <a href="https://github.com/getkeystone/keystone-ledger"><b>keystone-ledger</b> <span class="desc">— eval lineage &amp; proof</span></a>
+      <a href="https://github.com/getkeystone/keystone-engage"><b>keystone-engage</b> <span class="desc">— governed agents</span></a>
+      <a href="https://github.com/getkeystone/keystone-counsel"><b>keystone-counsel</b> <span class="desc">— governed retrieval</span></a>
+      <a href="https://github.com/getkeystone/keystone-verify"><b>keystone-verify</b> <span class="desc">— eval harness</span></a>
+      <a href="https://github.com/arnaldosepulveda/governed-incident-agent"><b>governed-incident-agent</b> <span class="desc">— hackathon build</span></a>
+    </div>
+    <p class="footer-note">Stack across the platform: Python · FastAPI · PostgreSQL · pgvector · NATS JetStream · Ollama · React · TypeScript · Docker · Grafana Tempo · Tailscale.</p>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="kicker"><b>06</b> &nbsp;Contact</div>
+    <h2>Work I want to do next</h2>
+    <p>
+      I am most useful on governed AI infrastructure for regulated or high-consequence environments:
+      retrieval and authorization, evaluation infrastructure, agent orchestration and control planes,
+      and the auditability that makes any of it defensible. If that is the problem you are staffing —
+      as an employer, an engineering leader, or a collaborator — I would like to hear about it.
+    </p>
+    <div class="lines">
+      <a href="mailto:arnaldo@getkeystone.ai">arnaldo@getkeystone.ai</a><br>
+      <a href="https://www.linkedin.com/in/arnaldosepulveda/">linkedin.com/in/arnaldosepulveda</a><br>
+      <a href="https://github.com/arnaldosepulveda">github.com/arnaldosepulveda</a>
+    </div>
+    <p class="footer-note">Based in Canada. Open to remote.</p>
+  </section>
+
 </main>
 
 </body>
