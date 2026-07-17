@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Arnaldo Sepulveda — Senior AI Engineer, governed AI infrastructure</title>
-<meta name="description" content="Arnaldo Sepulveda — Senior AI Engineer building governed AI infrastructure for regulated industries: authorization-first retrieval, governed multi-agent orchestration, reproducible evaluation, and fail-closed, auditable systems. Nearly 13 years at Genesys before building Keystone.">
+<meta name="description" content="Arnaldo Sepulveda — Senior AI Engineer building governed AI infrastructure for regulated industries: authorization-first retrieval, governed agent orchestration, reproducible evaluation, and fail-closed, auditable systems. Nearly 13 years at Genesys before building Keystone.">
 <meta name="author" content="Arnaldo Sepulveda">
 <meta name="google-site-verification" content="xf6O8zinKOOA4XrWFdBWYCNRRdKa3pCfS4PnyJUCzz0">
 <link rel="canonical" href="https://arnaldosepulveda.com/">
@@ -55,7 +55,7 @@
   "knowsAbout": [
     "Governed AI infrastructure",
     "Authorization-first retrieval",
-    "Multi-agent orchestration",
+    "Multi-agent substrate design",
     "AI evaluation infrastructure",
     "Audit trail architecture",
     "Role-based access control",
@@ -213,7 +213,7 @@
     <p class="intro">
       I build AI systems for environments where a wrong answer, an unauthorized retrieval, or an
       unaudited action carries real consequence. That means <strong>authorization-first retrieval,
-      governed multi-agent orchestration, reproducible evaluation, and fail-closed behavior</strong> —
+      governed agent orchestration, reproducible evaluation, and fail-closed behavior</strong> —
       running on customer-controlled infrastructure with local models. For the last ~18 months I have
       been building that thesis as a platform, <a href="https://getkeystone.ai/">Keystone</a>.
     </p>
@@ -241,8 +241,10 @@
     <p>
       Underneath the workloads is a shared governance substrate: a <strong>PostgreSQL agent registry</strong>
       for identity and roles, a task-lifecycle and orchestration layer, event-driven coordination over
-      NATS JetStream, a dispatch abstraction that keeps agents interchangeable, and sealed evaluation
-      artifacts. Build governance once, inherit it everywhere.
+      NATS JetStream, a dispatch abstraction that keeps agents interchangeable, and reproducible evaluation
+      artifacts sealed in the ledger. Build governance once, inherit it everywhere. The served path runs a
+      single governed agent today; the multi-agent coordinator that composes them is built and unit-tested
+      behind a config flag, not yet the default route.
     </p>
 
     <div class="substrate">
@@ -252,8 +254,8 @@
         <li>Task lifecycle &amp; orchestration</li>
         <li>Event-driven coordination (NATS JetStream)</li>
         <li>Dispatch abstraction</li>
-        <li>Sealed evaluation artifacts</li>
-        <li>Tamper-evident audit chain</li>
+        <li>Reproducible evaluation artifacts (sealed in the ledger)</li>
+        <li>Hash-chained SHA-256 audit trail</li>
       </ul>
     </div>
 
@@ -268,7 +270,7 @@
       </div>
       <div class="comp">
         <div class="k"><span class="n">Verify</span><span class="t">Evaluation</span></div>
-        <div class="d">Reproducible evaluation infrastructure — the harness and methodology that turn capability claims into sealed, versioned artifacts. <a href="https://github.com/getkeystone/keystone-verify">keystone-verify</a></div>
+        <div class="d">Reproducible evaluation infrastructure — the harness and methodology that turn capability claims into reproducible artifacts, sealed and versioned in the ledger. <a href="https://github.com/getkeystone/keystone-verify">keystone-verify</a></div>
       </div>
       <div class="comp">
         <div class="k"><span class="n">Ledger</span><span class="t">Proof</span></div>

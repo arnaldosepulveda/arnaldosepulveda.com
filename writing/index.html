@@ -102,14 +102,19 @@
   <div class="head">
     <h1>Writing</h1>
     <p class="subtitle">
-      Notes on governed AI, retrieval, evaluation, auditability, and system design — the lessons that
-      only surface after you have built and measured something. Longer engineering write-ups also live
-      on the <a href="https://getkeystone.ai/blog/">Keystone blog</a>.
+      Published engineering write-ups on governed AI, retrieval, evaluation, and auditability. The
+      longer technical pieces live on the <a href="https://getkeystone.ai/blog/">Keystone blog</a>;
+      this page collects them as they ship.
     </p>
   </div>
 
   <section>
     <div class="kicker"><b>Published</b></div>
+    <article class="entry">
+      <div class="meta">July 2026 · Keystone blog</div>
+      <h2><a href="https://getkeystone.ai/blog/causal-decomposition-under-suspended-judgment/">Causal Decomposition Under Suspended Judgment: Two Cases from Keystone</a></h2>
+      <p>Two cases in diagnosing governed AI failures at the mechanism level. A retrieval system returned wrong-topic chunks with high confidence; the actual causes were three independent factors, none of them the first hypothesis. The second case applies the same decomposition discipline to an architectural decision made before the system existed.</p>
+    </article>
     <article class="entry">
       <div class="meta">May 2026 · Keystone blog</div>
       <h2><a href="https://getkeystone.ai/blog/provana-acutecare/">Provana AcuteCare: clinical copilot with guardrails</a></h2>
@@ -120,36 +125,6 @@
       <h2><a href="https://getkeystone.ai/blog/governed-incident-response/">Governed incident response: agentic UI with RBAC and audit trails</a></h2>
       <p>An agentic incident-response interface where every tool call is authorized by the user's role and written to a tamper-evident audit trail, and the generated UI itself reflects what the user is permitted to do. Solo build for the AI Tinkerers Generative UI Hackathon.</p>
     </article>
-  </section>
-
-  <section>
-    <div class="kicker"><b>Drafting</b></div>
-    <p class="group-lead">Outlined and being written, grounded in the Keystone build and its published eval artifacts.</p>
-    <div class="draft">
-      <h3>Regulated AI has a retrieval problem, not a knowledge problem</h3>
-      <p>The documents almost always exist. What is missing is finding the right one, proving it is the source, and enforcing who was allowed to see it. Reframing &ldquo;knowledge&rdquo; as authorization-first retrieval is what turns an impressive demo into something you can actually run in a regulated shop.</p>
-    </div>
-    <div class="draft">
-      <h3>What evaluation artifacts taught me that demos never could</h3>
-      <p>A demo is built to succeed; a real eval is built to embarrass the system. Adversarial ACL probes, out-of-scope refusals, and published failing runs moved the architecture more than any feature request did. The failing run is the artifact that matters.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="kicker"><b>Planned</b></div>
-    <p class="group-lead">Queued. The argument is settled; the piece is not written yet.</p>
-    <div class="draft">
-      <h3>Keystone is not a chatbot demo</h3>
-      <p>The distance between a governed platform and a good demo is the unglamorous part: shared substrate, enforced authorization, reproducible evaluation, and an audit trail that survives scrutiny. A demo never has to have any of it. That is the entire difference.</p>
-    </div>
-    <div class="draft">
-      <h3>Why governed agents need visible control planes</h3>
-      <p>A tool-using agent is trustworthy only if you can see what it may do, what it did, and why — as explicit, authorized, logged state transitions. The control plane has to be a first-class object you can inspect, not an emergent property of a prompt.</p>
-    </div>
-    <div class="draft">
-      <h3>From Genesys to Keystone: enterprise rigor on the LLM substrate</h3>
-      <p>Severity-tier escalation, per-step validation, compliance logging, confidence-threshold refusal — the contact-center industry shipped these to production long before LLM products rediscovered them. What it takes to port that discipline onto the model, as architecture.</p>
-    </div>
   </section>
 
   <div class="footer">← <a href="/">arnaldosepulveda.com</a></div>
