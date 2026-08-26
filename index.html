@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Arnaldo Sepulveda — Senior AI Engineer, governed AI infrastructure</title>
-<meta name="description" content="Arnaldo Sepulveda — Senior AI Engineer building governed AI infrastructure for regulated industries: authorization-first retrieval, governed agent orchestration, reproducible evaluation, and fail-closed, auditable systems. Nearly 13 years at Genesys before building Keystone.">
+<title>Arnaldo Sepulveda | Senior AI Engineer, governed AI infrastructure</title>
+<meta name="description" content="Arnaldo Sepulveda: Senior AI Engineer building governed AI infrastructure for regulated industries: authorization-first retrieval, governed agent orchestration, reproducible evaluation, and fail-closed, auditable systems. Nearly 13 years at Genesys before building Keystone.">
 <meta name="author" content="Arnaldo Sepulveda">
 <meta name="google-site-verification" content="xf6O8zinKOOA4XrWFdBWYCNRRdKa3pCfS4PnyJUCzz0">
 <link rel="canonical" href="https://arnaldosepulveda.com/">
 
 <meta property="og:type" content="profile">
-<meta property="og:title" content="Arnaldo Sepulveda — Senior AI Engineer, governed AI infrastructure">
-<meta property="og:description" content="Building governed AI infrastructure for regulated industries: authorization-first retrieval, governed orchestration, reproducible evaluation, fail-closed and auditable by construction.">
+<meta property="og:title" content="Arnaldo Sepulveda | Senior AI Engineer, governed AI infrastructure">
+<meta property="og:description" content="Building governed AI infrastructure for regulated industries: authorization-first retrieval, governed orchestration, reproducible evaluation, structural fail-closed and audit controls.">
 <meta property="og:url" content="https://arnaldosepulveda.com/">
 <meta property="og:image" content="https://arnaldosepulveda.com/og.png">
 <meta property="og:image:width" content="1200">
@@ -21,7 +21,7 @@
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://arnaldosepulveda.com/og.png">
-<meta name="twitter:title" content="Arnaldo Sepulveda — Senior AI Engineer, governed AI infrastructure">
+<meta name="twitter:title" content="Arnaldo Sepulveda | Senior AI Engineer, governed AI infrastructure">
 <meta name="twitter:description" content="Governed AI infrastructure for regulated industries. Authorization-first retrieval, governed orchestration, reproducible evaluation.">
 
 <script type="application/ld+json">
@@ -73,7 +73,7 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* Self-hosted variable fonts (SIL OFL 1.1, latin subset) — see /fonts/OFL.txt */
+  /* Self-hosted variable fonts (SIL OFL 1.1, latin subset), see /fonts/OFL.txt */
   @font-face { font-family:'Fraunces'; font-style:normal; font-weight:500 600; font-display:swap; src:url('/fonts/fraunces.woff2') format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
   @font-face { font-family:'Inter'; font-style:normal; font-weight:400 600; font-display:swap; src:url('/fonts/inter.woff2') format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
   @font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:400 500; font-display:swap; src:url('/fonts/jetbrainsmono.woff2') format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
@@ -213,7 +213,7 @@
     <p class="intro">
       I build AI systems for environments where a wrong answer, an unauthorized retrieval, or an
       unaudited action carries real consequence. That means <strong>authorization-first retrieval,
-      governed agent orchestration, reproducible evaluation, and fail-closed behavior</strong> —
+      governed agent orchestration, reproducible evaluation, and fail-closed behavior</strong>,
       running on customer-controlled infrastructure with local models. For the last ~18 months I have
       been building that thesis as a platform, <a href="https://getkeystone.ai/">Keystone</a>.
     </p>
@@ -233,16 +233,17 @@
     <h2>Keystone: a governed AI platform, not a RAG demo</h2>
     <p>
       Keystone began as governed retrieval and grew into a platform. The interesting problem was never
-      "answer the question" — it was doing so under constraints that regulated work actually imposes:
+      "answer the question", it was doing so under constraints that regulated work actually imposes:
       prove the evidence, enforce who may see what, refuse when the ground is uncertain, and leave a
-      record that survives scrutiny. Those constraints are enforced in architecture — the retrieval
-      flow, the orchestration layer, the database model, the audit chain — not in a prompt.
+      record that survives scrutiny. Those constraints are enforced in architecture (the retrieval
+      flow, the orchestration layer, the database model, the audit chain), not in a prompt.
     </p>
     <p>
       Underneath the workloads is a shared governance substrate: a <strong>PostgreSQL agent registry</strong>
       for identity and roles, a task-lifecycle and orchestration layer, event-driven coordination over
       NATS JetStream, a dispatch abstraction that keeps agents interchangeable, and reproducible evaluation
-      artifacts sealed in the ledger. Build governance once, inherit it everywhere. The served path runs a
+      artifacts sealed in the ledger. Implement common runtime controls once, then reuse and re-test them
+      across workloads. The served path runs a
       single governed agent today; the multi-agent coordinator that composes them is built and unit-tested
       behind a config flag, not yet the default route.
     </p>
@@ -262,21 +263,30 @@
     <div class="components">
       <div class="comp">
         <div class="k"><span class="n">Engage</span><span class="t">Conversational</span></div>
-        <div class="d">Governed conversational agents for regulated customer interaction — severity-tier escalation, per-step evidence gating, human-in-the-loop routing. <a href="https://github.com/getkeystone/keystone-engage">keystone-engage</a></div>
+        <div class="d">Governed conversational agents for regulated customer interaction, with severity-tier escalation, per-step evidence gating, and human-in-the-loop routing. <a href="https://github.com/getkeystone/keystone-engage">keystone-engage</a></div>
       </div>
       <div class="comp">
         <div class="k"><span class="n">Counsel</span><span class="t">Retrieval</span></div>
-        <div class="d">Authorization-first retrieval for high-consequence content — query-time RBAC, evidence-backed answers, fail-closed refusal, factual-consistency scoring. <a href="https://github.com/getkeystone/keystone-counsel">keystone-counsel</a></div>
+        <div class="d">Authorization-first retrieval for high-consequence content, with query-time RBAC, evidence-backed answers, fail-closed refusal, and factual-consistency scoring as an additional evaluation signal. <a href="https://github.com/getkeystone/keystone-counsel">keystone-counsel</a></div>
       </div>
       <div class="comp">
         <div class="k"><span class="n">Verify</span><span class="t">Evaluation</span></div>
-        <div class="d">Reproducible evaluation infrastructure — the harness and methodology that turn capability claims into reproducible artifacts, sealed and versioned in the ledger. <a href="https://github.com/getkeystone/keystone-verify">keystone-verify</a></div>
+        <div class="d">Reproducible evaluation infrastructure: the harness and methodology that turn capability claims into reproducible artifacts, sealed and versioned in the ledger. <a href="https://github.com/getkeystone/keystone-verify">keystone-verify</a></div>
       </div>
       <div class="comp">
-        <div class="k"><span class="n">Ledger</span><span class="t">Proof</span></div>
-        <div class="d">Evaluation lineage and public proof artifacts — baselines, remediations, and the failing-to-passing history behind the claims. <a href="https://github.com/getkeystone/keystone-ledger">keystone-ledger</a></div>
+        <div class="k"><span class="n">Ledger</span><span class="t">Evidence</span></div>
+        <div class="d">Evaluation lineage and published evidence artifacts, including baselines, remediations, and the failing-to-passing history behind the claims. <a href="https://github.com/getkeystone/keystone-ledger">keystone-ledger</a></div>
       </div>
     </div>
+
+    <p style="margin-top:1.5rem">
+      <strong>Current research: Track A Runtime Validity.</strong> The first public, bounded experimental
+      component of Governed Execution, my runtime-governance research program. It tests a narrow mechanism
+      for revalidating a prior governance decision against separately sourced runtime authority state before
+      execution, with structured evidence recording whether the two matched, mismatched, or were not
+      evaluated. Results from Track A are evidence about that narrow mechanism, not validation of the
+      broader platform. <a href="https://github.com/getkeystone/track-a-runtime-validity">track-a-runtime-validity on GitHub</a>.
+    </p>
   </section>
 
   <!-- What I've learned -->
@@ -286,23 +296,23 @@
     <div class="lessons">
       <div class="lesson">
         <h3>Regulated orgs have a retrieval problem, not a knowledge problem</h3>
-        <p>The documents almost always exist. What is missing is the ability to find the right one, prove it is the source, and show who was allowed to see it. Framing it as retrieval — not "knowledge" — is what makes it tractable and governable.</p>
+        <p>The documents almost always exist. What is missing is the ability to find the right one, cite it as the source, and show who was allowed to see it. Framing it as retrieval, not "knowledge", is what makes it tractable and governable.</p>
       </div>
       <div class="lesson">
         <h3>Evaluation should be able to embarrass the system, not flatter it</h3>
-        <p>An eval that only passes is marketing. The useful ones are built to surface failure — adversarial access probes, out-of-scope queries, fail-closed cases — and the failing runs get published next to the passing ones. That is where the real design feedback comes from.</p>
+        <p>An evaluation that cannot surface failures provides weak evidence. The useful ones are built to surface failure (adversarial access probes, out-of-scope queries, fail-closed cases), and the failing runs get published next to the passing ones. That is where the real design feedback comes from.</p>
       </div>
       <div class="lesson">
         <h3>Governance has to be structural, not a prompt instruction</h3>
-        <p>A rule that lives only in a prompt can be reworded away. Access control belongs in the retrieval path and the database; refusal belongs outside the model; the audit record belongs in an append-only chain. If a control can be argued with, it is not a control.</p>
+        <p>A rule that lives only in a prompt can be reworded away. Access control belongs in the retrieval path and the database; refusal belongs outside the model; the audit record belongs in an append-only chain. Prompt instructions are not substitutes for enforceable runtime controls.</p>
       </div>
       <div class="lesson">
         <h3>Agents need visible control planes and auditable state transitions</h3>
-        <p>A tool-using agent is only trustworthy if you can see what it is allowed to do, what it did, and why — as explicit, authorized, logged state transitions. The control plane should be a first-class, inspectable object, not an emergent property of a prompt.</p>
+        <p>A tool-using agent is governable and inspectable only if you can see what it is allowed to do, what it did, and why, as explicit, authorized, logged state transitions. The control plane should be a first-class, inspectable object, not an emergent property of a prompt.</p>
       </div>
       <div class="lesson">
         <h3>Local, on-prem constraints improve architectural clarity</h3>
-        <p>Building for customer-controlled infrastructure with local models removes the cloud API as a crutch. You are forced to be explicit about cost, latency, failure modes, and data boundaries — and the architecture gets clearer for it.</p>
+        <p>Building for customer-controlled infrastructure with local models removes the cloud API as a crutch. You are forced to be explicit about cost, latency, failure modes, and data boundaries, and the architecture gets clearer for it.</p>
       </div>
     </div>
   </section>
@@ -312,7 +322,7 @@
     <div class="kicker"><b>03</b> &nbsp;Writing</div>
     <h2>Notes from building the thing</h2>
     <p>
-      I write about governed AI, retrieval, evaluation, auditability, and system design — the lessons
+      I write about governed AI, retrieval, evaluation, auditability, and system design: the lessons
       that only show up once you have implemented and measured something. Writing is a first-class part
       of this site, not an afterthought.
     </p>
@@ -320,7 +330,7 @@
       <div class="warticle">
         <div class="meta">May 2026 · Keystone blog</div>
         <a class="t" href="https://getkeystone.ai/blog/provana-acutecare/">Provana AcuteCare: clinical copilot with guardrails</a>
-        <p>The same governance model — Serve, Block, Route, Mutate — carried from workplace safety to acute-care medicine with no structural change. Built at the Boston AI Tinkerers hackathon.</p>
+        <p>The same governance model (Serve, Block, Route, Mutate) carried from workplace safety to acute-care medicine without structural changes in this prototype. An engineering observation from one build, not evidence of general portability. Built at the Boston AI Tinkerers hackathon.</p>
       </div>
       <div class="warticle">
         <div class="meta">May 2026 · Keystone blog</div>
@@ -336,41 +346,43 @@
     <div class="kicker"><b>04</b> &nbsp;Background</div>
     <h2>From enterprise contact centers to governed AI</h2>
     <p>
-      Before Keystone I spent <strong>nearly 13 years at Genesys</strong>, building the AI intelligence
-      layer of enterprise contact centers for regulated and public-sector customers. That work — knowledge
-      retrieval, chat, e-services, contact intelligence — ran in environments that demanded production
+      Before Keystone I spent <strong>nearly 13 years at Genesys</strong> working on enterprise
+      contact-center and cloud systems, including knowledge retrieval, conversational systems, digital
+      channels, routing, migrations, and high-severity production diagnostics, for regulated and
+      public-sector customers. That work ran in environments that demanded production
       reliability, security controls, and the ability to prove what happened, when, and who authorized it.
     </p>
     <p>
       The contact-center industry solved severity-tier escalation, per-step validation, compliance
       logging, confidence-threshold refusal, and policy-aware routing long before LLM products
       rediscovered these needs. Keystone is, in large part, me carrying that operational rigor onto the
-      LLM substrate — as architecture, not as a slide. I hold an MScE in Electrical Engineering from the
+      LLM substrate, as architecture, not as a slide. I hold an MScE in Electrical Engineering from the
       University of New Brunswick, with a thesis applying machine learning to smart-grid load control.
     </p>
   </section>
 
-  <!-- Proof -->
+  <!-- Evidence -->
   <section id="proof">
-    <div class="kicker"><b>05</b> &nbsp;Proof &amp; selected artifacts</div>
+    <div class="kicker"><b>05</b> &nbsp;Evaluation evidence &amp; selected artifacts</div>
     <h2>What is public now</h2>
     <p>
       I try to make claims that map to something you can inspect. The eval baselines below are published,
       with their methodology and lineage, in the <a href="https://github.com/getkeystone/keystone-ledger">ledger</a>.
     </p>
     <p class="metrics">
-      Governed retrieval — <b>keystone-core/retrieval-v1</b> (2026-04-11): P@1 <b>0.75</b>, MRR <b>0.79</b>,
+      Governed retrieval, <b>keystone-core/retrieval-v1</b> (2026-04-11): P@1 <b>0.75</b>, MRR <b>0.79</b>,
       adversarial ACL <b>8/8 blocked</b>, fail-closed <b>5/6</b>, Alberta OHS safety corpus.<br>
-      Governed agent extension — <b>keystone-core/agent-v1</b> (2026-05-20): <b>186 eval cases</b>,
+      Governed agent extension, <b>keystone-core/agent-v1</b> (2026-05-20): <b>186 eval cases</b>,
       12 categories, <b>0 failures</b>; failing precursor run published alongside.
     </p>
     <div class="artifacts">
-      <a href="https://getkeystone.ai/"><b>getkeystone.ai</b> <span class="desc">— platform &amp; live demo</span></a>
-      <a href="https://github.com/getkeystone/keystone-ledger"><b>keystone-ledger</b> <span class="desc">— eval lineage &amp; proof</span></a>
-      <a href="https://github.com/getkeystone/keystone-engage"><b>keystone-engage</b> <span class="desc">— governed agents</span></a>
-      <a href="https://github.com/getkeystone/keystone-counsel"><b>keystone-counsel</b> <span class="desc">— governed retrieval</span></a>
-      <a href="https://github.com/getkeystone/keystone-verify"><b>keystone-verify</b> <span class="desc">— eval harness</span></a>
-      <a href="https://github.com/arnaldosepulveda/governed-incident-agent"><b>governed-incident-agent</b> <span class="desc">— hackathon build</span></a>
+      <a href="https://getkeystone.ai/"><b>getkeystone.ai</b> <span class="desc">(platform &amp; live demo)</span></a>
+      <a href="https://github.com/getkeystone/keystone-ledger"><b>keystone-ledger</b> <span class="desc">(eval lineage &amp; evidence)</span></a>
+      <a href="https://github.com/getkeystone/keystone-engage"><b>keystone-engage</b> <span class="desc">(governed agents)</span></a>
+      <a href="https://github.com/getkeystone/keystone-counsel"><b>keystone-counsel</b> <span class="desc">(governed retrieval)</span></a>
+      <a href="https://github.com/getkeystone/keystone-verify"><b>keystone-verify</b> <span class="desc">(eval harness)</span></a>
+      <a href="https://github.com/getkeystone/track-a-runtime-validity"><b>track-a-runtime-validity</b> <span class="desc">(governance research)</span></a>
+      <a href="https://github.com/arnaldosepulveda/governed-incident-agent"><b>governed-incident-agent</b> <span class="desc">(hackathon build)</span></a>
     </div>
     <p class="footer-note">Stack across the platform: Python · FastAPI · PostgreSQL · pgvector · NATS JetStream · Ollama · React · TypeScript · Docker · Grafana Tempo · Tailscale.</p>
   </section>
@@ -382,8 +394,8 @@
     <p>
       I am most useful on governed AI infrastructure for regulated or high-consequence environments:
       retrieval and authorization, evaluation infrastructure, agent orchestration and control planes,
-      and the auditability that makes any of it defensible. If that is the problem you are staffing —
-      as an employer, an engineering leader, or a collaborator — I would like to hear about it.
+      and the auditability that makes any of it defensible. If that is the problem you are staffing,
+      as an employer, an engineering leader, or a collaborator, I would like to hear about it.
     </p>
     <div class="lines">
       <a href="mailto:arnaldo@getkeystone.ai">arnaldo@getkeystone.ai</a><br>
