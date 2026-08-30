@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regulated AI has a retrieval problem, not a knowledge problem | Arnaldo Sepulveda</title>
+<meta name="description" content="An engineering case study in hybrid retrieval, authorization eligibility, evidence thresholds, citations, and bounded refusal behavior in Keystone.">
+<meta name="author" content="Arnaldo Sepulveda">
+<link rel="canonical" href="https://arnaldosepulveda.com/writing/regulated-ai-retrieval-problem/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Regulated AI has a retrieval problem, not a knowledge problem">
+<meta property="og:description" content="What building authorization-aware retrieval taught me about relevance, evidence, and refusal.">
+<meta property="og:url" content="https://arnaldosepulveda.com/writing/regulated-ai-retrieval-problem/">
+<meta property="og:image" content="https://arnaldosepulveda.com/og.png">
+<meta property="article:published_time" content="2026-08-30">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Regulated AI has a retrieval problem, not a knowledge problem">
+<meta name="twitter:description" content="An engineering case study in authorization-aware hybrid retrieval and evidence thresholds.">
+<meta name="twitter:image" content="https://arnaldosepulveda.com/og.png">
+<link rel="stylesheet" href="/writing/article.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Regulated AI has a retrieval problem, not a knowledge problem","description":"An engineering case study in hybrid retrieval, authorization eligibility, evidence thresholds, citations, and bounded refusal behavior in Keystone.","author":{"@type":"Person","name":"Arnaldo Sepulveda","url":"https://arnaldosepulveda.com/"},"datePublished":"2026-08-30","dateModified":"2026-08-30","mainEntityOfPage":"https://arnaldosepulveda.com/writing/regulated-ai-retrieval-problem/","image":"https://arnaldosepulveda.com/og.png"}</script>
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner"><a class="who" href="/">Arnaldo Sepulveda</a><nav aria-label="Primary"><a href="/">Home</a><a href="/writing/">Writing</a><a href="https://getkeystone.ai/">Keystone</a></nav></div></header>
+<main>
+<header class="article-head">
+  <div class="eyebrow">Engineering case study</div>
+  <h1>Regulated AI has a retrieval problem, not a knowledge problem</h1>
+  <p class="dek">In the enterprise workflows I was designing for, useful source material often already existed. The harder problem was finding eligible evidence for this caller and this question, then refusing when that evidence was not strong enough.</p>
+  <div class="meta"><time datetime="2026-08-30">August 30, 2026</time> · 7 minute read</div>
+</header>
+<article>
+<h2>The document is not the answer</h2>
+<p>The title is deliberately sharp, but the claim is bounded. Some organizations genuinely lack reliable source material. Others have contradictory policies, stale manuals, or knowledge trapped outside searchable systems. My narrower observation comes from building <a href="https://github.com/getkeystone/keystone-gov">keystone-gov</a>: in the kinds of enterprise and regulated workflows I was designing for, useful documents often already existed, but turning them into a defensible answer was still an engineering problem.</p>
+<p>A policy library can contain the right paragraph and still produce a poor result. The system may retrieve a nearby but incorrect passage. It may find a highly relevant document that the caller is not permitted to access. It may strip the source from the generated answer, making the conclusion difficult to inspect. Or it may have too little evidence and generate a fluent completion anyway.</p>
+<p>That changes the system design. The task is not simply to give a model more knowledge. It is to build a retrieval path that selects evidence under constraints, keeps provenance attached, measures whether the retrieved material clears a threshold, and has an explicit refusal path.</p>
+
+<h2>Semantic relevance is only one gate</h2>
+<p>Semantic retrieval asks whether a passage is about the question. Authorization asks whether that passage is eligible for the current caller. These are independent tests.</p>
+<p>Imagine an employee asking about leave. A document for a different jurisdiction may be semantically close because it uses the same vocabulary and describes a similar process. A restricted management procedure may be even closer. Neither should necessarily enter the answer context. Similarity can rank candidates, but it cannot decide permission.</p>
+<div class="callout"><p>A document can be semantically relevant and still be authorization-ineligible.</p></div>
+<p>This is why I resist designs that retrieve broadly and ask the model to ignore forbidden material. If the intended control is that unauthorized content must not reach the model, then allowing restricted content into model context has already violated that control. Prompt instructions are not a substitute for query eligibility.</p>
+<p>There is also a larger distinction. <strong>Permission governance asks who is allowed to do what.</strong> <strong>Decision justification asks why this particular decision was appropriate for this context, evidence, affected party, and consequence level.</strong> Authorization-aware retrieval helps with the first question. It can supply evidence for the second, but it does not answer it by itself.</p>
+
+<h2>Put authorization into the retrieval path</h2>
+<p>The served keystone-gov API is a Python and FastAPI service backed by PostgreSQL. Its query path carries role, domain, and jurisdiction information into retrieval. Those attributes constrain which records can become candidates for the answer. Authorization is therefore part of data selection, not a suggestion appended to the generation prompt.</p>
+<p>This matters operationally. If a caller is not eligible for a record, that record should not appear in the candidate set passed downstream. That excluded record is not available to the downstream generation step through this retrieval path. The approach does not make the complete system secure by declaration, but it moves an important control to a deterministic boundary that can be tested.</p>
+<p><a href="https://github.com/getkeystone/keystone-counsel">keystone-counsel</a> implements a related but distinct pattern. Counsel uses role and classification constraints plus client-relationship isolation. Client isolation is implemented and regression-tested. The current published corpus, however, is global; it is not evidence of a deployed production corpus containing multiple clients. Counsel's predicates should not be described as if they are the same domain and jurisdiction predicates used by Gov.</p>
+
+<h2>What hybrid retrieval actually looked like</h2>
+<p>Keystone-gov combines PostgreSQL full-text search with pgvector cosine similarity. The two methods solve different retrieval problems.</p>
+<p>Full-text search is good at exact language: policy identifiers, named programs, acronyms, and distinctive phrases. Vector similarity can recover passages that express the same idea using different wording. Hybrid retrieval produces candidates from both signals, applies authorization predicates, and combines the results for procedural reranking.</p>
+<p>The reranker is deterministic and procedural. It is not a neural cross-encoder. That distinction matters because architecture descriptions often turn a generic word like “reranking” into a stronger implementation claim. Here, the value is inspectability and predictable behavior, not a claim that a learned reranker has been deployed.</p>
+<p>The retrieved evidence then faces thresholds before generation. Thresholds turn uncertainty into explicit control flow. A weak candidate set should not be treated as adequate merely because it is the best set available. The local generation step receives bounded evidence, and source-oriented output keeps retrieved material connected to the response so a reviewer can inspect where the answer came from.</p>
+
+<h2>Refusal is an engineering behavior</h2>
+<p>“The model should say it does not know” is not a control. A refusal becomes engineering behavior when it has defined triggers, an observable outcome, and evaluation cases.</p>
+<p>In Gov, prompt-injection checks, jurisdiction handling, retrieval eligibility, and evidence thresholds create defined cases where the path can stop rather than improvise. That is fail-closed behavior where those controls are implemented. It is not universal across every component.</p>
+<p>HHEM-2.1-Open provides an additional factual-consistency and evidence-related score. Its current failure behavior is an important limitation: a scoring failure can return <code>None</code> and allow the pipeline to continue. I would not describe the whole pipeline as universally fail-closed while that degrade-open path exists. The accurate statement is that specific controls fail closed, while this component can degrade open.</p>
+<p>That level of precision is useful. It identifies where engineering work remains and prevents a reassuring label from hiding inconsistent failure semantics.</p>
+
+<h2>What the evaluation exposed</h2>
+<p>The historical retrieval baseline covered 53 documents and 2,674 chunks. It recorded Precision@1 of 0.75 and mean reciprocal rank of 0.79. Eight of eight adversarial ACL probes were blocked, while five of six defined fail-closed cases passed.</p>
+<p>Those numbers describe one retained internal evaluation configuration. They do not establish independent validation or general behavior. The imperfect retrieval scores show why a working demo is not enough: even when the corpus contains relevant evidence, the first result can still be wrong. The five-of-six fail-closed result is more useful than a rounded claim of safety because it exposes a boundary that needed work.</p>
+<p>The evaluation also changed how I thought about success. Retrieval quality, authorization, evidence sufficiency, and refusal must be measured separately. A good similarity score cannot compensate for an authorization failure. A blocked unauthorized request does not prove the answer was factually supported. One metric cannot stand in for the system.</p>
+
+<h2>Audit integrity is not answer correctness</h2>
+<p>Gov records per-record HMAC-SHA256 values. That can detect changes to the fields actually covered when the verifier retains the key and expected assumptions. It does not prove that an authorization was appropriate, that a source supported an answer, or that the record represents an independently witnessed event. Integrity and semantic correctness are different properties.</p>
+<p>This separation is especially important in regulated work. A pristine record of a bad decision is still a bad decision. Logs and integrity checks help reconstruct what happened; they do not supply the missing justification.</p>
+
+<h2>What this does not establish</h2>
+<p>Keystone is a bounded engineering case study, not proof that every regulated AI system is primarily a retrieval system. It does not show that authorization-aware retrieval solves consequential action governance. It does not establish production suitability for an organization merely because the mechanisms exist in code. And it does not prove that the same design transfers unchanged to another corpus, legal regime, or workload.</p>
+<p>The implementation does support narrower conclusions. Eligibility can be enforced before context construction. Hybrid retrieval can combine exact and semantic signals inside PostgreSQL. Evidence thresholds can produce observable refusal behavior. Separate evaluation cases can expose whether retrieval, ACLs, and failure handling behave as intended for an evaluated commit.</p>
+
+<h2>What I would carry into another AI system</h2>
+<p>I would begin with the retrieval contract, not the prompt. What makes a record eligible? Which caller and runtime attributes affect that decision? Which exact and semantic signals are useful? What evidence is attached to the response? At what threshold does the system stop?</p>
+<p>I would instrument each gate independently. Candidate generation, authorization filtering, ranking, evidence sufficiency, generation, and post-generation scoring should not collapse into one “quality” result. When a test fails, the team needs to know which mechanism failed.</p>
+<p>Finally, I would keep refusal visible. A refusal is not a lesser demo. In a consequential system, it is often evidence that the control path is working. The engineering loop is straightforward: build the path, find its failure modes, evaluate the mechanisms separately, retain the result, and improve the implementation without rewriting the history.</p>
+</article>
+<footer class="article-footer">More engineering notes in <a href="/writing/">Writing</a> · <a href="/">arnaldosepulveda.com</a></footer>
+</main>
+</body>
+</html>

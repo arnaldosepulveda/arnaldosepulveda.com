@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Writing | Arnaldo Sepulveda</title>
-<meta name="description" content="Notes on governed AI, retrieval, evaluation, auditability, and system design, from building Keystone, a governed AI platform for regulated industries.">
+<meta name="description" content="Engineering writing on AI systems, retrieval, evaluation, conversational agents, enterprise systems, and runtime controls.">
 <meta name="author" content="Arnaldo Sepulveda">
 <link rel="canonical" href="https://arnaldosepulveda.com/writing/">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Writing | Arnaldo Sepulveda">
-<meta property="og:description" content="Notes on governed AI, retrieval, evaluation, auditability, and system design.">
+<meta property="og:description" content="Engineering writing on AI systems, retrieval, evaluation, conversational agents, and enterprise system design.">
 <meta property="og:url" content="https://arnaldosepulveda.com/writing/">
 <meta property="og:image" content="https://arnaldosepulveda.com/og.png">
 
@@ -102,23 +102,38 @@
   <div class="head">
     <h1>Writing</h1>
     <p class="subtitle">
-      Published engineering write-ups on governed AI, retrieval, evaluation, and auditability. The
-      longer technical pieces live on the <a href="https://getkeystone.ai/blog/">Keystone blog</a>;
-      this page collects them as they ship.
+      Engineering write-ups on building, evaluating, debugging, and operating AI systems.
+      Local essays appear alongside selected work from the
+      <a href="https://getkeystone.ai/blog/">Keystone blog</a>.
     </p>
   </div>
 
   <section>
     <div class="kicker"><b>Published</b></div>
     <article class="entry">
+      <div class="meta">August 2026 · arnaldosepulveda.com</div>
+      <h2><a href="/writing/regulated-ai-retrieval-problem/">Regulated AI has a retrieval problem, not a knowledge problem</a></h2>
+      <p>A bounded engineering case study in hybrid retrieval, authorization eligibility, evidence thresholds, source-oriented answers, and explicit refusal behavior.</p>
+    </article>
+    <article class="entry">
+      <div class="meta">August 2026 · arnaldosepulveda.com</div>
+      <h2><a href="/writing/evaluation-artifacts-vs-demos/">What evaluation artifacts taught me that demos never could</a></h2>
+      <p>Why retaining failures, binding results to code and configuration, and separating strict assertions from characterization changed how I evaluate AI systems.</p>
+    </article>
+    <article class="entry">
+      <div class="meta">August 2026 · arnaldosepulveda.com</div>
+      <h2><a href="/writing/from-genesys-to-keystone/">From Genesys to Keystone: enterprise rigor on the LLM substrate</a></h2>
+      <p>What 12+ years in enterprise contact-center systems carried into hands-on AI engineering, and which probabilistic, retrieval, agent, and evaluation problems required new methods.</p>
+    </article>
+    <article class="entry">
       <div class="meta">August 2026 · Keystone blog</div>
       <h2><a href="https://getkeystone.ai/blog/the-six-substrate-dimensions/">The Six Substrate Dimensions</a></h2>
-      <p>A falsifiable test for what might belong in the substrate: if you replace the agent, the framework, or the provider, and the property is still necessary, it is a candidate for substrate. Six candidate dimensions pass that test in this analysis, proposed as hypotheses rather than an established ontology. Most frameworks carry none of them today.</p>
+      <p>A proposed test for what might belong in the substrate: if you replace the agent, framework, or provider and the property is still necessary, it may be a substrate candidate. The piece examines six candidate dimensions as research hypotheses rather than an established ontology.</p>
     </article>
     <article class="entry">
       <div class="meta">August 2026 · Keystone blog</div>
       <h2><a href="https://getkeystone.ai/blog/the-protocol-between-agents-is-the-protocol-between-teams/">The Protocol Between Agents Is the Protocol Between Teams</a></h2>
-      <p>The interface layer gets replatformed every four to seven years. The governance layer underneath gets patched. Thirteen years of watching that pattern at Genesys, and a hypothesis for why multi-agent AI in 2026 may be poised to repeat it.</p>
+      <p>Reflections from 12+ years working with enterprise contact-center systems, and a hypothesis about how interface changes, organizational boundaries, and accumulated governance mechanisms may reappear in multi-agent AI.</p>
     </article>
     <article class="entry">
       <div class="meta">July 2026 · Keystone blog</div>
@@ -133,7 +148,7 @@
     <article class="entry">
       <div class="meta">May 2026 · Keystone blog</div>
       <h2><a href="https://getkeystone.ai/blog/governed-incident-response/">Governed incident response: agentic UI with RBAC and audit trails</a></h2>
-      <p>An agentic incident-response interface where every tool call is authorized by the user's role and written to a tamper-evident audit trail, and the generated UI itself reflects what the user is permitted to do. Solo build for the AI Tinkerers Generative UI Hackathon.</p>
+      <p>An agentic incident-response prototype where role checks gate tool calls, actions are written to a hash-chained audit record, and the generated UI reflects the actions available to the user's role. Solo build for the AI Tinkerers Generative UI Hackathon.</p>
     </article>
   </section>
 

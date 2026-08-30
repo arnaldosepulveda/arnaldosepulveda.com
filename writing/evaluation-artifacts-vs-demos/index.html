@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What evaluation artifacts taught me that demos never could | Arnaldo Sepulveda</title>
+<meta name="description" content="Why retained failures, commit binding, dataset hashes, and characterization cases changed how I evaluate AI systems.">
+<meta name="author" content="Arnaldo Sepulveda">
+<link rel="canonical" href="https://arnaldosepulveda.com/writing/evaluation-artifacts-vs-demos/">
+<meta property="og:type" content="article"><meta property="og:title" content="What evaluation artifacts taught me that demos never could">
+<meta property="og:description" content="A research-engineering account of retaining AI evaluation failures and binding results to code and configuration.">
+<meta property="og:url" content="https://arnaldosepulveda.com/writing/evaluation-artifacts-vs-demos/"><meta property="og:image" content="https://arnaldosepulveda.com/og.png">
+<meta property="article:published_time" content="2026-08-30">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="What evaluation artifacts taught me that demos never could"><meta name="twitter:description" content="Why retained failures and commit-bound results matter in AI engineering."><meta name="twitter:image" content="https://arnaldosepulveda.com/og.png">
+<link rel="stylesheet" href="/writing/article.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"What evaluation artifacts taught me that demos never could","description":"Why retained failures, commit binding, dataset hashes, and characterization cases changed how I evaluate AI systems.","author":{"@type":"Person","name":"Arnaldo Sepulveda","url":"https://arnaldosepulveda.com/"},"datePublished":"2026-08-30","dateModified":"2026-08-30","mainEntityOfPage":"https://arnaldosepulveda.com/writing/evaluation-artifacts-vs-demos/","image":"https://arnaldosepulveda.com/og.png"}</script>
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner"><a class="who" href="/">Arnaldo Sepulveda</a><nav aria-label="Primary"><a href="/">Home</a><a href="/writing/">Writing</a><a href="https://getkeystone.ai/">Keystone</a></nav></div></header>
+<main>
+<header class="article-head"><div class="eyebrow">Evaluation engineering</div><h1>What evaluation artifacts taught me that demos never could</h1><p class="dek">A demo can show that an exercised path worked under the demonstrated conditions. A retained evaluation shows which paths were exercised, what failed, and which implementation actually produced the result.</p><div class="meta"><time datetime="2026-08-30">August 30, 2026</time> · 7 minute read</div></header>
+<article>
+<h2>Demos answer the wrong question</h2>
+<p>I like demos. They force a system to become concrete. An API has to respond, a retrieval path has to return evidence, and an interface has to make the behavior legible. But a demo is usually optimized around a successful path. The question it answers is: can this implementation produce the intended experience at least once?</p>
+<p>That is not the question I need answered before changing an AI system. I need to know what happens with an unauthorized request, an out-of-scope question, malformed input, a retrieval miss, a low-evidence answer, and a case that failed in an earlier revision. I need to know whether a refusal remains a refusal after a seemingly unrelated change.</p>
+<p>Those questions require explicit cases and retained results. The useful unit is not a screenshot or a summary percentage. It is an artifact connecting cases, configuration, data, implementation revision, outputs, assertions, and failures.</p>
+
+<h2>The first useful surprise was failure</h2>
+<p>The historical Keystone retrieval baseline is small enough to understand and large enough to expose real problems: 53 documents, 2,674 chunks, Precision@1 of 0.75, and mean reciprocal rank of 0.79. Eight of eight adversarial ACL probes were blocked. Five of six fail-closed cases passed.</p>
+<div class="metrics">Corpus: 53 documents / 2,674 chunks<br>Retrieval: P@1 0.75 / MRR 0.79<br>ACL probes: 8/8 blocked<br>Fail-closed cases: 5/6</div>
+<p>The failure was more informative than replacing 5/6 with a rounded story. It showed that a defined path did not meet its assertion. FC-005 was later remediated in code and manual checks were performed, but a passing re-verification is not recorded in the retained evaluation lineage. Therefore the historical artifact remains 5/6. The merged remediation is implementation evidence; it is not a recorded passing rerun.</p>
+<p>This distinction sounds administrative until a regression occurs. Then it becomes the difference between knowing what was evaluated and assuming that the latest code must have inherited a result produced by an earlier revision.</p>
+
+<h2>One passing run did not mean the larger run would pass</h2>
+<p>The historical core lineage made that lesson sharper. The run identified as agent-v0-pre / KDAT-002B covered 66 cases and passed with the corpus loaded. It was a useful checkpoint. It was not the later evaluation.</p>
+<p>Agent-v0 / KDAT-002C expanded to 186 cases and failed. Nine cases failed. Investigation traced those failures to four root-cause implementation defects. The important story is not that a methodology “proved it could find bugs.” The bounded conclusion is that this evaluation configuration detected those specific defects in that implementation.</p>
+<p>After remediation, agent-v1 / KDAT-002D retained 186 cases and ran 558 executions. It recorded 153 strict cases passed, zero strict failures, and 33 characterization cases. The 66-case pre-run, 186-case failing run, and 186-case later run are separate events. Collapsing them into a simple before-and-after success story would discard the information that makes the lineage useful.</p>
+
+<h2>Four defects hiding behind nine failing cases</h2>
+<p>Case counts and defect counts describe different things. Nine failing cases did not necessarily mean nine independent bugs. Multiple cases can traverse the same defective mechanism under different inputs. Root-cause analysis reduced the observed failures to four implementation defects.</p>
+<p>This is where evaluation becomes engineering rather than scoring. The workflow is familiar from incident investigation:</p>
+<ul>
+  <li>preserve the failing input and output;</li>
+  <li>group failures by behavior rather than by case name;</li>
+  <li>trace each group through retrieval, orchestration, and assertions;</li>
+  <li>identify the smallest mechanism that explains the observations;</li>
+  <li>add or retain cases that distinguish the proposed cause from alternatives;</li>
+  <li>rerun against an identified revision.</li>
+</ul>
+<p>A top-line pass rate cannot do this work. It can tell me that something changed. It cannot tell me whether the problem was retrieval, authorization, state handling, assertion design, or an unexpected but acceptable output.</p>
+
+<h2>Characterization is not failure wearing a softer label</h2>
+<p>The 33 characterization cases in agent-v1 matter because not every useful observation has a strict binary oracle. Some model behavior needs to be captured before the team can responsibly define a pass condition. A characterization case records behavior without pretending that the requirement is already settled.</p>
+<p>This helps prevent two opposite errors. The first is allowing anything because model output is probabilistic. The second is forcing every nuanced result into an arbitrary binary test. Strict cases belong where the requirement is explicit: an unauthorized document must not be returned, a required field must exist, or a defined refusal condition must stop the path. Characterization belongs where the team is still learning the output distribution or deciding what the product contract should be.</p>
+<p>Characterization should not become a permanent hiding place for defects. Its value is that it separates an observed behavior from a conclusion about acceptability.</p>
+
+<h2>Retain the failure, not just the fix</h2>
+<p>Teams often preserve the final green run and discard intermediate failures as noise. That makes the repository look cleaner, but it removes the reasoning trail. A retained failing run answers questions a final PASS cannot:</p>
+<ul>
+  <li>Which cases exposed the defect?</li>
+  <li>Was the failure deterministic across executions?</li>
+  <li>Which output or assertion changed after remediation?</li>
+  <li>Did the dataset or configuration change at the same time?</li>
+  <li>Was the final result achieved by fixing the implementation or weakening the test?</li>
+</ul>
+<p><a href="https://github.com/getkeystone/keystone-ledger">keystone-ledger</a> retains public evaluation artifacts and lineage. “Retains” is the important verb. The repository provides inspectable history, recorded checksums, and Git history. It does not provide a general cryptographic sealing mechanism.</p>
+<p>That visibility changes engineering behavior. If a failing case remains public beside its remediation, it becomes harder to quietly rewrite the interpretation. It also becomes easier for a future engineer to recover why a regression case exists.</p>
+
+<h2>Bind evidence to the implementation that produced it</h2>
+<p>An evaluation result without a code revision is a floating claim. AI systems change at several layers: application code, prompts, model versions, retrieval indexes, datasets, thresholds, and evaluation assertions. A PASS belongs to the combination that was actually evaluated.</p>
+<p>Commit binding identifies the implementation revision. Dataset and configuration hashes help determine whether the inputs and evaluation rules match a prior run. Run metadata records environment and execution details that may explain differences. Together they improve reconstruction.</p>
+<p>They do not make history immutable. A checksum can show that bytes match a recorded digest under the assumptions of the comparison. Git history makes changes inspectable in a repository. Neither is equivalent to independent witnessing or an externally anchored cryptographic record. An actor able to rewrite an unanchored store may be able to replace content and recompute dependent hashes.</p>
+<div class="callout"><p>Integrity metadata helps reconstruct what was evaluated. It does not prove the evaluation was correct, complete, or independently validated.</p></div>
+
+<h2>PASS has a boundary</h2>
+<p>A PASS is a statement about evaluated cases under a specific configuration at a specific revision. It does not mean that every possible input will pass. It does not establish portability to another model or deployment. It does not demonstrate production suitability. An internal PASS is not independent validation.</p>
+<p>Even the meaning of a case can be narrower than its label. An ACL probe can show that a defined unauthorized request did not return protected content in that run. It does not prove that every authorization policy is correct. A factual-consistency assertion can test a chosen relationship between evidence and output. It does not establish truth outside the evidence supplied.</p>
+<p>This is not an argument against summary metrics. Metrics help compare runs and locate changes. The mistake is allowing the summary to escape its evaluation boundary.</p>
+
+<h2>Where Verify fits, and where it does not</h2>
+<p><a href="https://github.com/getkeystone/keystone-verify">keystone-verify</a> is now a standalone HTTP evaluation harness. Its CLI evaluates compatible HTTP endpoints through profiles and writes structured results plus run metadata. That makes evaluation logic reusable without embedding it in the workload.</p>
+<p>The current Verify CLI should not be retroactively credited with producing the historical keystone-core artifacts. Those artifacts predate the current tool lineage. Verify is relevant to how I would run structured endpoint evaluation now; Ledger is where historical results and lineage are retained.</p>
+
+<h2>What I now expect from AI evaluation</h2>
+<p>I expect negative paths to be first-class: unauthorized retrieval, malformed inputs, retrieval misses, refusal cases, regressions, and known prior defects. I expect strict assertions to be separated from characterization. I expect failures to remain visible after fixes.</p>
+<p>I also expect every result to answer basic reconstruction questions. Which commit ran? Which cases, dataset, profile, thresholds, and model configuration were used? What executed more than once? Which outputs failed, and what assertion produced that judgment?</p>
+<p>Finally, I expect claims to remain smaller than artifacts. A demo can show that an exercised path worked under the demonstrated conditions. A retained evaluation can show how one identified implementation behaved under defined pressure. That narrower statement is much more useful when the next change lands and the engineering cycle begins again.</p>
+</article>
+<footer class="article-footer">More engineering notes in <a href="/writing/">Writing</a> · <a href="/">arnaldosepulveda.com</a></footer>
+</main>
+</body>
+</html>

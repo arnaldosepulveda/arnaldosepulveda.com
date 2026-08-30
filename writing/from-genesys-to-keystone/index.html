@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Genesys to Keystone: enterprise rigor on the LLM substrate | Arnaldo Sepulveda</title>
+<meta name="description" content="What 12+ years in enterprise contact-center systems carried into building, evaluating, debugging, and operating AI systems since late 2024.">
+<meta name="author" content="Arnaldo Sepulveda">
+<link rel="canonical" href="https://arnaldosepulveda.com/writing/from-genesys-to-keystone/">
+<meta property="og:type" content="article"><meta property="og:title" content="From Genesys to Keystone: enterprise rigor on the LLM substrate">
+<meta property="og:description" content="Engineering habits that transferred from enterprise contact centers to AI systems, and the important things that did not.">
+<meta property="og:url" content="https://arnaldosepulveda.com/writing/from-genesys-to-keystone/"><meta property="og:image" content="https://arnaldosepulveda.com/og.png"><meta property="article:published_time" content="2026-08-30">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="From Genesys to Keystone: enterprise rigor on the LLM substrate"><meta name="twitter:description" content="From 12+ years of enterprise systems work to hands-on AI engineering since late 2024."><meta name="twitter:image" content="https://arnaldosepulveda.com/og.png">
+<link rel="stylesheet" href="/writing/article.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"From Genesys to Keystone: enterprise rigor on the LLM substrate","description":"What 12+ years in enterprise contact-center systems carried into building, evaluating, debugging, and operating AI systems since late 2024.","author":{"@type":"Person","name":"Arnaldo Sepulveda","url":"https://arnaldosepulveda.com/"},"datePublished":"2026-08-30","dateModified":"2026-08-30","mainEntityOfPage":"https://arnaldosepulveda.com/writing/from-genesys-to-keystone/","image":"https://arnaldosepulveda.com/og.png"}</script>
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner"><a class="who" href="/">Arnaldo Sepulveda</a><nav aria-label="Primary"><a href="/">Home</a><a href="/writing/">Writing</a><a href="https://getkeystone.ai/">Keystone</a></nav></div></header>
+<main>
+<header class="article-head"><div class="eyebrow">Engineering practice</div><h1>From Genesys to Keystone: enterprise rigor on the LLM substrate</h1><p class="dek">The systems are not the same. The habits of explicit routing, observable failure, controlled change, and evidence survived the transition better than I expected.</p><div class="meta"><time datetime="2026-08-30">August 30, 2026</time> · 8 minute read</div></header>
+<article>
+<h2>Production systems teach you to distrust the happy path</h2>
+<p>I spent 12+ years at Genesys working around enterprise contact-center systems before shifting more of my hands-on work into AI engineering in late 2024. My work included production incident response, escalation, routing, voice and digital systems, integrations, cloud and hybrid environments, migrations, operational documentation, and supporting technical teams.</p>
+<p>The most durable lesson was not about a specific product. It was that a production system is defined as much by its unhappy paths as by its primary function. Calls fail to route. Dependencies time out. Identity data disagrees across systems. A customer environment behaves differently from the reference environment. A migration uncovers an assumption made years earlier by a team that is no longer present.</p>
+<p>Under production pressure, “it works in our environment” is the beginning of an investigation, not its conclusion. You need state, timestamps, identifiers, configuration, ownership, escalation paths, and a way to distinguish the first visible symptom from the root cause.</p>
+<p>That background shaped how I approached Keystone. I did not encounter LLMs as an escape from systems engineering. I encountered them as a new component with unusual failure modes that still had to live inside real systems.</p>
+
+<h2>What 12+ years of contact-center work taught me</h2>
+<p>Contact centers are routing systems with consequences. They decide where an interaction goes, which context travels with it, when automation should continue, and when a person needs to intervene. The software spans telephony, digital channels, identity, integrations, reporting, and operational processes. Failures cross boundaries quickly.</p>
+<p>Debugging unfamiliar customer environments taught me to start with the observed path. Which component accepted the interaction? Which rule selected the next destination? What state changed? Which integration response was received? What did the system record before and after the failure?</p>
+<p>Incident response also taught me the value of explicit handoffs. An escalation without evidence transfers confusion rather than work. A good handoff includes the symptom, impact, timeline, reproduction conditions, relevant logs, attempted mitigations, and the current hypothesis clearly labeled as a hypothesis.</p>
+<p>Migrations added another lesson: controlled change matters because systems contain hidden contracts. Rollback planning is not pessimism. It is recognition that documentation is incomplete and dependencies can behave differently at runtime. Good runbooks turn that recognition into an executable response rather than institutional folklore.</p>
+<p>Leading and supporting technical teams reinforced that operational rigor must be communicable. A mechanism that only its author understands is fragile. Names, states, dashboards, and failure messages should help the next engineer build a correct mental model under time pressure.</p>
+
+<h2>What transferred cleanly into AI engineering</h2>
+<p>Several habits transferred directly.</p>
+<h3>Make routing explicit</h3>
+<p>An AI workflow should show how an input reaches retrieval, a model, a tool, or a human. Hidden routing logic makes failures look like model randomness. In conversational-agent work, severity gates, corpus selection, and escalation decisions need named conditions and observable outcomes.</p>
+<h3>Design escalation before the incident</h3>
+<p>“Human in the loop” is incomplete unless the system defines what triggers the handoff, what context accompanies it, who can claim it, and what happens if nobody responds. Human presence alone is not meaningful oversight. The operator needs authority, evidence, and a clear decision point.</p>
+<h3>Treat state as a system concern</h3>
+<p>Multi-step agents make ownership and lifecycle visible. Tasks move through explicit lifecycle states, and the implementation may need to track ownership, progress, waiting conditions, failure, and recovery. Heartbeats and stuck detection can support recovery, but their presence in code does not prove distributed lease or fencing guarantees. The served path and optional mechanisms must be described separately.</p>
+<h3>Instrument boundaries, not just latency</h3>
+<p>Latency and token counts matter, but I also want to see which documents were eligible, which evidence threshold fired, which tool request was authorized, and why a workflow escalated. Observability should help explain decisions in the implementation, not simply prove that requests occurred.</p>
+<h3>Preserve operational evidence</h3>
+<p>Logs, traces, evaluation outputs, and run metadata serve different purposes. A log can show that an authorization decision was recorded; it cannot prove the policy was correct. A checksum can help detect changed bytes relative to a reference; it cannot establish semantic correctness. The evidence needs to be useful without being oversold.</p>
+
+<h2>What did not transfer</h2>
+<p>LLM systems are not contact-center systems with a model attached. The differences are substantial.</p>
+<p>Model output is probabilistic and sensitive to prompt wording, context ordering, model revision, and sampling choices. Retrieval quality changes what the model can support. A fluent answer may contain unsupported statements even when the surrounding workflow is deterministic. Tool-using agents can turn generated output into external action. Multi-step workflows accumulate state and can carry an early error into later decisions.</p>
+<p>Traditional unit tests remain necessary for parsing, transitions, authorization predicates, and API contracts. They are insufficient for the entire behavior. Evaluation needs datasets, structured assertions, repeated executions where variance matters, and characterization cases where the acceptable boundary is still being learned.</p>
+<p>There is another temporal difference. Permission can change between an earlier approval and execution. The caller may lose authority, the task may change, evidence may become stale, or the intended consequence may become more significant. A workflow that checked permission at planning time may need to revalidate at the action boundary.</p>
+
+<h2>Retrieval became an operational system problem</h2>
+<p>My first Keystone work centered on governed retrieval. The stack was familiar in parts: Python and FastAPI services, PostgreSQL, API integrations, local inference, and operational controls. pgvector added semantic retrieval alongside PostgreSQL full-text search.</p>
+<p>The difficult behavior emerged between components. A vector result could be semantically close but authorization-ineligible. A full-text result could match exact policy language but belong to the wrong jurisdiction. A model could produce a polished answer from weak evidence. A scoring component could fail and leave a decision about whether to stop or continue.</p>
+<p>That led to hybrid retrieval, authorization predicates inside the query path, evidence thresholds, source-oriented answers, and defined refusal behavior. It also led to more granular evaluation. Retrieval relevance, ACL enforcement, fail-closed behavior, and factual consistency cannot be compressed into a single quality score.</p>
+<p>The operational lesson was familiar: separate mechanisms so a failure can be located. The AI-specific mechanisms were new.</p>
+
+<h2>Agents made state and authority visible</h2>
+<p>Conversational-agent workflows expanded the problem from answering a question to managing work over time. A request may require retrieval, several model calls, an escalation check, a tool call, and a human decision. That makes orchestration necessary, but it also creates authority questions.</p>
+<p>Which agent or person owns the task? Which transitions are valid? Is a multi-agent coordinator on the served path or only behind configuration? Which authorization check protects retrieval, and which one protects a tool call? Does the system record budget and token metadata, and does it actually enforce a real cost budget end to end?</p>
+<p>I learned to keep implemented mechanisms, default behavior, and optional paths separate. A schema field is not an active control. An authorization function that is not wired into the served path is not served authorization. An event integration that is off by default is not deployed shared infrastructure.</p>
+<p>This is where an old enterprise instinct remains useful: draw the actual runtime path. Architecture diagrams should not promote available components into guarantees.</p>
+
+<h2>Evaluation became part of engineering, not QA afterward</h2>
+<p>Keystone evaluation work changed my development loop. I began retaining structured results, failures, run metadata, commit references, and dataset or configuration hashes. The purpose was not to produce a permanent score. It was to make change inspectable.</p>
+<p>A historical 66-case run passed. A later 186-case run failed nine cases, which traced to four root-cause defects. A subsequent 186-case evaluation recorded 558 executions, 153 strict passes, no strict failures, and 33 characterization cases. Those results belong to their evaluated commits and configurations. They are internal evaluation, not independent validation.</p>
+<p>Keeping the failing run changed the story from “the system passes” to “these defects were visible under this configuration, this implementation changed, and this later configuration produced these results.” That is a much better basis for engineering decisions.</p>
+
+<h2>The next problem: whether permission is still current</h2>
+<p>Building retrieval and agent workflows led me to a question beyond orchestration: what happens when the justification that allowed work to begin is no longer current when the system is about to create a consequence?</p>
+<div class="callout"><p>Orchestration determines how work proceeds. Governance determines whether the intended consequence remains justified to proceed.</p></div>
+<p>This question became part of Governed Execution, a runtime-governance research direction. <a href="https://github.com/getkeystone/runtime-validity">Runtime Validity</a>, identified as Track A, is a bounded reference implementation. Its current demonstration revalidates a controlled process-local authority change and records transition evidence.</p>
+<p>That implementation does not establish authentic external revocation, production authentication or authorization, durable evidence, or real external-consequence enforcement. It is useful because it makes one narrow runtime-validity mechanism executable and testable without pretending the broader research argument is complete.</p>
+
+<h2>The kind of AI engineer I am becoming</h2>
+<p>Since late 2024, my work has moved deeper into retrieval, evaluation, conversational agents, local models, tool integrations, and runtime controls. The technical vocabulary changed, but my center of gravity did not. I build systems, observe where they fail, trace those failures to mechanisms, retain evidence, and change the implementation.</p>
+<p>The enterprise background helps me ask operational questions early. Who owns this state? What happens on timeout? Which path is actually served? How does an operator recover? What evidence survives the incident? The AI work adds new questions. Is the answer supported by retrieved evidence? Was the evidence eligible? How variable is the behavior? Can a model-generated request cross an action boundary? Is prior authority still current?</p>
+<p>I do not think enterprise rigor removes uncertainty from AI systems. It can make important uncertainty more visible, explicit, and testable. That means explicit boundaries, honest evaluation, inspectable failures, and architecture descriptions that match the runtime. It is less dramatic than a flawless demo and more useful when the system meets the unhappy path.</p>
+</article>
+<footer class="article-footer">More engineering notes in <a href="/writing/">Writing</a> · <a href="/">arnaldosepulveda.com</a></footer>
+</main>
+</body>
+</html>
