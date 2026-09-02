@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The knowledge was already there. The system to use it was not. | Arnaldo Sepulveda</title>
+<meta name="description" content="The support problem that pushed Arnaldo Sepulveda toward applied AI: organizations often already possess the answer, but fail to operationalize that knowledge for the next person who needs it.">
+<meta name="author" content="Arnaldo Sepulveda">
+<link rel="canonical" href="https://arnaldosepulveda.com/writing/the-knowledge-was-already-there/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The knowledge was already there. The system to use it was not.">
+<meta property="og:description" content="Why repeated support investigations led me from enterprise technical support toward retrieval, RAG, evaluation, and production AI systems.">
+<meta property="og:url" content="https://arnaldosepulveda.com/writing/the-knowledge-was-already-there/">
+<meta property="og:image" content="https://arnaldosepulveda.com/og.png">
+<meta property="article:published_time" content="2026-09-02">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The knowledge was already there. The system to use it was not.">
+<meta name="twitter:description" content="Why repeated support investigations led me from enterprise technical support toward retrieval, RAG, evaluation, and production AI systems.">
+<meta name="twitter:image" content="https://arnaldosepulveda.com/og.png">
+<link rel="stylesheet" href="/writing/article.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The knowledge was already there. The system to use it was not.","description":"The support problem that pushed Arnaldo Sepulveda toward applied AI: organizations often already possess the answer, but fail to operationalize that knowledge for the next person who needs it.","author":{"@type":"Person","name":"Arnaldo Sepulveda","url":"https://arnaldosepulveda.com/"},"datePublished":"2026-09-02","dateModified":"2026-09-02","mainEntityOfPage":"https://arnaldosepulveda.com/writing/the-knowledge-was-already-there/","image":"https://arnaldosepulveda.com/og.png"}</script>
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner"><a class="who" href="/">Arnaldo Sepulveda</a><nav aria-label="Primary"><a href="/">Home</a><a href="/writing/">Writing</a><a href="https://getkeystone.ai/">Keystone</a></nav></div></header>
+<main>
+<header class="article-head">
+  <div class="eyebrow">Career note · Applied AI</div>
+  <h1>The knowledge was already there. The system to use it was not.</h1>
+  <p class="dek">The support problem that pushed me toward applied AI was not a lack of answers. It was repeatedly rediscovering knowledge the organization had already paid to discover.</p>
+  <div class="meta"><time datetime="2026-09-02">September 2, 2026</time> · 8 minute read</div>
+</header>
+<article>
+<p>For much of my career at Genesys, I worked in enterprise technical support and Business Applications across knowledge systems, classification, digital interactions, customer and interaction data, agent applications, integrations, and production operations.</p>
+<p>One pattern kept bothering me.</p>
+<p>A customer would encounter a difficult problem.</p>
+<p>It might involve a particular product version, configuration, integration, deployment topology, or combination of components. A support analyst would investigate. Sometimes the case would move between several people. Sometimes we would involve a product specialist. Sometimes development or engineering would need to explain what the software was actually doing.</p>
+<p>Eventually, someone would figure it out.</p>
+<p>The customer would get an answer.</p>
+<p>The case would close.</p>
+<p>From the perspective of the individual ticket, the process had worked.</p>
+<p>But that was not always the end of the problem.</p>
+<p>Months later, another customer might encounter something very similar.</p>
+<p>A different analyst would begin investigating.</p>
+<p>Logs would be collected again. Configuration would be compared again. Someone might ask around to see whether anybody remembered seeing the behavior before. Development or engineering might get pulled into another conversation.</p>
+<p>And eventually we would rediscover something the organization had already learned.</p>
+<p>That was the part I could not stop noticing.</p>
+
+<h2>The answer existed somewhere</h2>
+<p>The organization often already possessed the relevant knowledge.</p>
+<p>It might have been in a support case.</p>
+<p>It might have been buried inside an engineering discussion.</p>
+<p>It might have existed in product documentation but required very specific context to understand that it applied.</p>
+<p>It might have been recorded in an internal chat between an analyst and a developer.</p>
+<p>Or it might simply have remained in the memory of the people who had handled the original incident.</p>
+<p>The problem was not always creating new knowledge.</p>
+<p>The problem was turning existing knowledge into something operationally useful for the next person who needed it.</p>
+<p>That distinction became increasingly important to me:</p>
+<div class="callout"><p>The organization already possessed the knowledge, but had not operationalized it so the right person could reliably get the right answer in the right context.</p></div>
+<p>There is a large difference between storing information and making it usable.</p>
+<p>A closed support ticket is stored information.</p>
+<p>A developer's explanation in a chat is stored information.</p>
+<p>A 200-page product manual is stored information.</p>
+<p>None of those automatically gives the next analyst the correct answer for this customer, on this version, with this configuration, under these particular circumstances.</p>
+<p>That is an operational systems problem.</p>
+
+<h2>Repetition is expensive in ways that are easy to miss</h2>
+<p>The obvious cost is time.</p>
+<p>If an experienced support engineer spends two hours reconstructing something the company already worked out six months earlier, those two hours could have gone toward a genuinely new problem.</p>
+<p>But the cost is larger than that.</p>
+<p>The customer waits longer.</p>
+<p>Development and engineering get interrupted by questions they may have answered before.</p>
+<p>Different analysts reconstruct the same issue differently.</p>
+<p>Useful context gets lost between teams.</p>
+<p>One engineer knows that a particular workaround applies only after version X. Another remembers that it fails under a certain deployment configuration. A third knows that the apparent symptom is misleading and that the real problem is somewhere else.</p>
+<p>The organization's knowledge becomes distributed across people rather than reliably available through the system.</p>
+<p>This is not a criticism of support engineers.</p>
+<p>In fact, it is almost the opposite.</p>
+<p>Good support engineers are valuable because they can reason about unfamiliar environments, recognize when the obvious answer does not fit, interpret incomplete evidence, communicate under pressure, and know when another specialist needs to become involved.</p>
+<p>Those are precisely the things I do not want to waste by repeatedly asking experienced people to rediscover known information.</p>
+
+<h2>The goal was never to replace support</h2>
+<p>When people talk about AI in customer support, the conversation often jumps immediately to automation or headcount reduction.</p>
+<p>That was never the problem that interested me.</p>
+<p>I did not look at an experienced support engineer and think, "An AI should replace this person."</p>
+<p>I looked at what that engineer was spending time doing and thought:</p>
+<p><strong>Why are we making this person reconstruct knowledge the organization already has?</strong></p>
+<p>If an issue has been diagnosed before, a useful system should help the next analyst find that prior knowledge quickly.</p>
+<p>It should preserve the evidence behind it.</p>
+<p>It should understand enough context to distinguish a superficially similar problem from one where the prior answer really applies.</p>
+<p>And when the evidence is weak or the situation is materially different, it should make that uncertainty visible rather than inventing an answer.</p>
+<p>That moves the human toward the work where human judgment has the highest value.</p>
+<p>The useful division is closer to:</p>
+<p><strong>Use the system to help recover what is already known.</strong><br><strong>Use the human to reason about what is actually new.</strong></p>
+
+<h2>Why traditional search was not enough</h2>
+<p>Enterprise knowledge systems existed long before modern LLMs.</p>
+<p>I worked around them.</p>
+<p>Search indexes, knowledge bases, classification systems, documentation repositories, ticketing systems, and agent-facing knowledge tools were already part of enterprise support environments.</p>
+<p>They helped.</p>
+<p>But the deeper problem was often contextual.</p>
+<p>The analyst did not merely need a document containing the right words.</p>
+<p>They needed to know:</p>
+<ul>
+  <li>whether the information applied to this product and version;</li>
+  <li>whether it matched this customer's configuration;</li>
+  <li>whether a previous case represented the same underlying mechanism;</li>
+  <li>whether the information was still current;</li>
+  <li>whether the user was allowed to access it;</li>
+  <li>where the answer came from;</li>
+  <li>and when the available evidence was not sufficient to justify an answer.</li>
+</ul>
+<p>That is considerably harder than putting a search box in front of a document repository.</p>
+<p>Modern retrieval and language models create better tools for attacking that problem, but they do not eliminate it.</p>
+<p>They make some parts easier and introduce new failure modes of their own.</p>
+
+<h2>RAG was interesting because it attacked the problem I actually cared about</h2>
+<p>Retrieval-augmented generation caught my attention because it creates a useful separation.</p>
+<p>Instead of asking a model to know everything, retrieve relevant evidence at the time of the request and use that evidence to construct the answer.</p>
+<p>Conceptually, that is much closer to what a strong support engineer already does:</p>
+<p>find the relevant information, understand the context, determine whether it applies, and explain the result.</p>
+<p>But a production retrieval system still has to answer difficult questions.</p>
+<p>What makes a source relevant?</p>
+<p>What if lexical search and semantic similarity disagree?</p>
+<p>What if the most semantically similar document belongs to a different customer, jurisdiction, role, or product version?</p>
+<p>What if the retrieved evidence is weak?</p>
+<p>What if the model produces a convincing answer that the evidence does not actually support?</p>
+<p>What if the right behavior is to refuse or escalate?</p>
+<p>Those questions are why my work through Keystone Applied Intelligence became much more than putting a chatbot in front of documents.</p>
+
+<h2>Building Keystone turned the original frustration into an engineering problem</h2>
+<p>Since late 2024, I have been working on different parts of this problem directly.</p>
+<p>That includes hybrid retrieval combining lexical and semantic signals, authorization constraints before model-context construction, deterministic reranking, evidence thresholds, citations, refusal behavior, and structured evaluation.</p>
+<p>A role-aware knowledge-retrieval system I built is now deployed and in active use at a municipal fire department, where operational feedback has informed subsequent extensions.</p>
+<p>That implementation does not prove that I have solved enterprise knowledge operationalization generally.</p>
+<p>It gives me something more useful: a system where specific mechanisms can be implemented, exercised, evaluated, broken, and improved.</p>
+<p>One of the most important lessons has been that retrieval quality alone is not enough.</p>
+<p>A system can retrieve a highly relevant passage and still be wrong because the caller should not have received it.</p>
+<p>It can enforce authorization correctly and still produce a poorly supported answer.</p>
+<p>It can generate a convincing response from evidence that is technically related but contextually wrong.</p>
+<p>And it can pass a demo while failing exactly the kinds of edge cases that matter in production.</p>
+<p>That led me deeper into evaluation as well.</p>
+<p>The point is not to prove that an AI system is universally correct.</p>
+<p>It is to make failure visible enough that the implementation can improve.</p>
+
+<h2>The support engineer still matters</h2>
+<p>There is a tendency to describe AI systems as though the end state is maximum autonomy.</p>
+<p>I do not think that is the right objective for many operational environments.</p>
+<p>A strong system should know where automation is useful and where it should stop.</p>
+<p>Sometimes the right result is an answer.</p>
+<p>Sometimes it is a suggested diagnostic path.</p>
+<p>Sometimes it is a summary that helps the next engineer understand what has already been tried.</p>
+<p>Sometimes it is an escalation with the relevant evidence already attached.</p>
+<p>And sometimes the correct output is simply:</p>
+<p><strong>I do not have enough evidence to answer this reliably.</strong></p>
+<p>That is not a failure of the product.</p>
+<p>In many environments, that is the product behaving correctly.</p>
+
+<h2>The problem has expanded, but the motivation has not changed</h2>
+<p>My current work has moved beyond retrieval into conversational AI, evaluation, agent workflows, observability, and bounded research into runtime controls for consequential actions.</p>
+<p>The questions are becoming more complex.</p>
+<p>Once an AI system starts using tools or taking actions, the problem is no longer only whether it retrieved the right information.</p>
+<p>Now we also have to ask what it is allowed to do, whether the conditions that justified an earlier decision are still current, what evidence should survive the action, and when a human should intervene.</p>
+<p>But the motivation is still recognizable.</p>
+<p>I am interested in systems that help people use organizational knowledge and capability more effectively without hiding uncertainty or removing the judgment that complex work still requires.</p>
+<p>The original support problem remains a good test:</p>
+<p><strong>Are we making experienced people repeatedly solve things the organization already knows, or are we giving them reliable access to that knowledge so they can concentrate on what is genuinely new?</strong></p>
+<p>That is one of the reasons I moved from supporting enterprise systems toward building AI systems.</p>
+<p>And it is still one of the problems I want to keep working on.</p>
+
+<h3>Related engineering notes</h3>
+<ul>
+  <li><a href="/writing/regulated-ai-retrieval-problem/">Regulated AI has a retrieval problem, not a knowledge problem</a><br>How I approached hybrid retrieval, authorization eligibility, evidence thresholds, source-oriented answers, and explicit refusal behavior.</li>
+  <li><a href="/writing/evaluation-artifacts-vs-demos/">What evaluation artifacts taught me that demos never could</a><br>Why retained failures, bounded claims, and reconstruction evidence became part of the engineering loop.</li>
+  <li><a href="/writing/from-genesys-to-keystone/">From Genesys to Keystone: enterprise rigor on the LLM substrate</a><br>What 12+ years in enterprise production systems carried into my current AI engineering work.</li>
+</ul>
+</article>
+<footer class="article-footer">More engineering notes in <a href="/writing/">Writing</a> · <a href="/">arnaldosepulveda.com</a></footer>
+</main>
+</body>
+</html>
