@@ -27,7 +27,7 @@
   <div class="eyebrow">Applied AI</div>
   <h1>AI availability is not a business case.</h1>
   <p class="dek">Why starting from "we have AI" leads to worse outcomes than starting from "what is actually wrong with this workflow."</p>
-  <div class="meta"><time datetime="2026-09-08">September 8, 2026</time> · 3 minute read</div>
+  <div class="meta"><time datetime="2026-09-08">September 8, 2026</time> · 9 minute read</div>
 </header>
 <article>
 <p>It took me a while to put this into words.</p>
@@ -48,13 +48,105 @@
 
 <p>Those are very different starting points.</p>
 
-<p>A Support problem might come from missing information, a product defect, poor routing, bad data, or something deterministic software could handle perfectly well. Only some problems actually require ambiguity, contextual interpretation, or adaptive decision-making from an AI system.</p>
+<p>A Support problem might come from missing information, a product defect, poor routing, bad data, or something deterministic software could handle perfectly well.</p>
 
-<p>I already knew how to investigate difficult technical problems.</p>
+<p>Only some problems actually require ambiguity, contextual interpretation, or adaptive decision-making from an AI system.</p>
+
+<p>That distinction matters more than it might seem.</p>
+
+<h2>A technology can be capable without being the right intervention</h2>
+
+<p>One of the easiest mistakes to make with a powerful new technology is to confuse capability with necessity.</p>
+
+<p>An LLM might be able to classify a request.</p>
+
+<p>That does not mean an LLM is the best way to classify it.</p>
+
+<p>An agent might be able to choose among several tools.</p>
+
+<p>That does not mean the workflow requires adaptive tool selection.</p>
+
+<p>A generative system might be able to produce a polished answer.</p>
+
+<p>That does not mean generating a new answer is better than retrieving an authoritative one that already exists.</p>
+
+<p>The question is not:</p>
+
+<p><strong>Can AI perform this task?</strong></p>
+
+<p>The more useful question is:</p>
+
+<p><strong>What mechanism does this problem actually require?</strong></p>
+
+<p>That changes the design conversation.</p>
+
+<p>If the input is known, the rule is stable, and the expected action is deterministic, normal software may be the better answer.</p>
+
+<p>If the problem is that people cannot reliably find information the organization already possesses, retrieval may matter more than generation.</p>
+
+<p>If the workflow requires interpreting variable language or incomplete context, an AI-assisted step may make sense.</p>
+
+<p>If the next action genuinely depends on intermediate evidence and the system must choose among several approved tools, bounded agentic behavior may become useful.</p>
+
+<p>Those are different problems.</p>
+
+<p>They should not collapse into one category called "AI opportunity."</p>
+
+<h2>The workflow comes before the model</h2>
 
 <p>Years in production Support taught me not to confuse the first visible symptom with the mechanism causing it.</p>
 
-<p>But I realized I wanted to get better at the layer above the technical diagnosis.</p>
+<p>A customer might report that something is "slow."</p>
+
+<p>That does not tell you whether the problem is the application, the network, the database, a downstream dependency, capacity, configuration, or something else entirely.</p>
+
+<p>You investigate the path.</p>
+
+<p>You compare expected behavior with observed behavior.</p>
+
+<p>You gather evidence.</p>
+
+<p>You narrow the failure domain.</p>
+
+<p>The same discipline should apply when an organization says:</p>
+
+<blockquote class="callout"><p>"Agents are spending too much time on these cases."</p></blockquote>
+
+<p>That statement is not yet a diagnosis.</p>
+
+<p>Maybe the information already exists but is difficult to retrieve.</p>
+
+<p>Maybe the information does not exist.</p>
+
+<p>Maybe the workflow requires too many handoffs.</p>
+
+<p>Maybe the product exposes the wrong data at the wrong point.</p>
+
+<p>Maybe the case is waiting on another team.</p>
+
+<p>Maybe there is a deterministic rule that has simply never been automated.</p>
+
+<p>Maybe the work genuinely requires judgment.</p>
+
+<p>Those situations can look similar at the level of the business symptom.</p>
+
+<p>They require very different interventions.</p>
+
+<p>If we jump directly from:</p>
+
+<blockquote class="callout"><p>"Agents are spending too much time"</p></blockquote>
+
+<p>to:</p>
+
+<blockquote class="callout"><p>"Let's build an LLM assistant"</p></blockquote>
+
+<p>we skip most of the reasoning that determines whether the intervention has any chance of creating value.</p>
+
+<h2>The first useful question is usually about the outcome</h2>
+
+<p>I already knew how to investigate difficult technical problems.</p>
+
+<p>What I realized I wanted to get better at was the layer above the technical diagnosis.</p>
 
 <p>What outcome are we actually trying to improve?</p>
 
@@ -82,19 +174,227 @@
 
 <p>Afterward, measure whether the workflow actually improved.</p>
 
+<p>That last part is important.</p>
+
+<p>Because a system can improve technically without improving the operation.</p>
+
+<h2>Better AI metrics do not automatically mean better business outcomes</h2>
+
+<p>Suppose a new retrieval system improves recall.</p>
+
+<p>That may be useful.</p>
+
+<p>But it does not yet tell us whether Support cases are resolved faster.</p>
+
+<p>Suppose an assistant reduces the time required to draft a response.</p>
+
+<p>That does not tell us whether customers receive better answers.</p>
+
+<p>Suppose an automated workflow saves five minutes per case.</p>
+
+<p>That does not automatically mean the organization created financial value.</p>
+
+<p>Saved time only becomes operational capacity if the workflow can actually use that capacity.</p>
+
+<p>And capacity only becomes financial value through some realization mechanism.</p>
+
+<p>Maybe the team can absorb additional demand without hiring.</p>
+
+<p>Maybe backlog falls.</p>
+
+<p>Maybe escalation volume falls.</p>
+
+<p>Maybe service level improves.</p>
+
+<p>Maybe highly skilled engineers spend less time reconstructing known information and more time on novel problems.</p>
+
+<p>But those things have to be demonstrated.</p>
+
+<p>A technical success metric is not the same thing as a business case.</p>
+
+<p>That distinction is especially important with AI because it is easy to measure things that are adjacent to the outcome rather than the outcome itself.</p>
+
+<p>The model responded.</p>
+
+<p>The endpoint was healthy.</p>
+
+<p>The latency was acceptable.</p>
+
+<p>The evaluation passed.</p>
+
+<p>The agent completed the workflow.</p>
+
+<p>All of those may matter.</p>
+
+<p>None of them independently establish that the customer-care operation improved.</p>
+
+<h2>Sometimes the right answer is retrieval, not generation</h2>
+
+<p>One of the recurring Support problems that pushed me toward applied AI was much simpler than "we need an intelligent agent."</p>
+
+<p>The organization often already possessed useful knowledge.</p>
+
+<p>A difficult issue would be investigated.</p>
+
+<p>Support would collect evidence.</p>
+
+<p>Engineering or Development might become involved.</p>
+
+<p>Eventually the problem would be understood and resolved.</p>
+
+<p>That knowledge would then exist somewhere.</p>
+
+<p>A ticket.</p>
+
+<p>A document.</p>
+
+<p>A conversation.</p>
+
+<p>A runbook.</p>
+
+<p>An individual's memory.</p>
+
+<p>Months later, a similar issue could appear and another skilled person would reconstruct much of the same reasoning.</p>
+
+<p>The knowledge existed.</p>
+
+<p>The system for using it reliably did not.</p>
+
+<p>That is a very different problem from:</p>
+
+<blockquote class="callout"><p>"We need the model to invent an answer."</p></blockquote>
+
+<p>It is closer to:</p>
+
+<blockquote class="callout"><p>"We need to retrieve the right evidence, for the right person, in the right context, and know when the evidence is not good enough."</p></blockquote>
+
+<p>That distinction led me much deeper into retrieval, evaluation, and evidence quality.</p>
+
+<p>It also reinforced a larger lesson:</p>
+
+<p><strong>The intervention should match the failure mechanism.</strong></p>
+
+<h2>Sometimes deterministic software is better</h2>
+
+<p>There is also a tendency to use AI for decisions that are not actually ambiguous.</p>
+
+<p>If a rule can be expressed clearly and evaluated deterministically, there is often no advantage in asking a probabilistic model to rediscover it every time.</p>
+
+<p>For example:</p>
+
+<ul>
+  <li>required fields;</li>
+  <li>eligibility rules;</li>
+  <li>state transitions;</li>
+  <li>routing based on known attributes;</li>
+  <li>permissions;</li>
+  <li>fixed escalation conditions;</li>
+  <li>threshold checks.</li>
+</ul>
+
+<p>Those are usually better expressed as software, policy, or workflow logic.</p>
+
+<p>AI may still participate elsewhere in the workflow.</p>
+
+<p>It might extract information from unstructured text before the rule runs.</p>
+
+<p>It might summarize context for a human.</p>
+
+<p>It might retrieve supporting evidence.</p>
+
+<p>But that does not mean the control itself should become probabilistic.</p>
+
+<p>There is a useful architectural principle in that:</p>
+
+<p><strong>Use AI where ambiguity exists. Use deterministic mechanisms where the rule is already known.</strong></p>
+
+<p>The boundary between those two is often more important than the choice of model.</p>
+
+<h2>Agentic behavior should have an additional justification</h2>
+
+<p>The same applies when moving from a single AI-assisted step to an agent.</p>
+
+<p>An agent is useful when the workflow genuinely requires variable sequencing.</p>
+
+<p>Observe something.</p>
+
+<p>Choose among several approved tools.</p>
+
+<p>Inspect the result.</p>
+
+<p>Decide what evidence is still missing.</p>
+
+<p>Take another bounded action.</p>
+
+<p>Stop when the objective or stopping condition is satisfied.</p>
+
+<p>That can be powerful.</p>
+
+<p>But it introduces another level of uncertainty.</p>
+
+<p>More possible paths.</p>
+
+<p>More state.</p>
+
+<p>More tool interactions.</p>
+
+<p>More failure modes.</p>
+
+<p>More questions about permissions and external consequences.</p>
+
+<p>So "this could be an agent" is not enough.</p>
+
+<p>The workflow needs to justify why adaptive sequencing provides value that a simpler deterministic process cannot.</p>
+
+<p>Sometimes it does.</p>
+
+<p>Sometimes a fixed workflow with one or two AI-assisted steps is easier to evaluate, easier to operate, and easier to trust.</p>
+
+<h2>I needed to understand the technology deeply enough to reject it</h2>
+
 <p>At the same time, I knew I could not make good decisions about AI while treating the technology as a black box.</p>
 
 <p>So I got to work on that side too.</p>
 
-<p>Retrieval. Evaluation. AI workflows. Runtime controls.</p>
+<p>Retrieval.</p>
+
+<p>Evaluation.</p>
+
+<p>AI workflows.</p>
+
+<p>Runtime controls.</p>
 
 <p>Not because every problem needs them.</p>
 
 <p>Because I wanted to understand the intervention space well enough to know <strong>when they were actually warranted</strong>.</p>
 
-<p>Sometimes that process ends with an LLM.</p>
+<p>That may sound backwards.</p>
 
-<p>Sometimes it ends with retrieval, deterministic software, a data fix, or a process change.</p>
+<p>Why learn a technology deeply if the goal is sometimes to say not to use it?</p>
+
+<p>Because shallow understanding makes technology selection worse.</p>
+
+<p>If I do not understand retrieval, I cannot tell when better search is enough.</p>
+
+<p>If I do not understand model evaluation, I cannot tell whether apparent improvement survives controlled testing.</p>
+
+<p>If I do not understand agentic workflows, I cannot distinguish genuine adaptive reasoning from a deterministic workflow wrapped in agent terminology.</p>
+
+<p>If I do not understand runtime controls, I cannot reason clearly about the difference between generating an output and allowing that output to create an external consequence.</p>
+
+<p>Technical depth should make intervention selection more disciplined, not more enthusiastic.</p>
+
+<h2>"Do not use AI" is a legitimate result</h2>
+
+<p>Sometimes the analysis should end with an LLM.</p>
+
+<p>Sometimes it should end with retrieval.</p>
+
+<p>Sometimes deterministic software.</p>
+
+<p>Sometimes a data fix.</p>
+
+<p>Sometimes a process change.</p>
 
 <p>And sometimes the correct conclusion should simply be:</p>
 
@@ -103,6 +403,18 @@
 <p>That is not anti-AI.</p>
 
 <p>I think it is part of becoming good at applied AI.</p>
+
+<p>The value of applied AI is not measured by how many workflows contain a model.</p>
+
+<p>It is measured by whether the organization became better at accomplishing something that matters.</p>
+
+<p>That means understanding where the constraint actually is.</p>
+
+<p>Choosing the smallest intervention capable of addressing it.</p>
+
+<p>Measuring whether the intervention changed the workflow.</p>
+
+<p>And being willing to stop when the evidence does not support continuing.</p>
 
 <p><strong>AI-first should not mean putting AI first in the reasoning process.</strong></p>
 
