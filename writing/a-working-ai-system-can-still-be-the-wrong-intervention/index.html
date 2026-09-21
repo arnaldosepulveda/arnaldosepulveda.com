@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A working AI system can still be the wrong intervention | Arnaldo Sepulveda</title>
+<meta name="description" content="Why enterprise AI initiatives should begin with workflow diagnosis, evidence, and intervention selection before deciding what technology to build.">
+<meta name="author" content="Arnaldo Sepulveda">
+<link rel="canonical" href="https://arnaldosepulveda.com/writing/a-working-ai-system-can-still-be-the-wrong-intervention/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A working AI system can still be the wrong intervention">
+<meta property="og:description" content="Why enterprise AI initiatives should begin with workflow diagnosis, evidence, and intervention selection before deciding what technology to build.">
+<meta property="og:url" content="https://arnaldosepulveda.com/writing/a-working-ai-system-can-still-be-the-wrong-intervention/">
+<meta property="og:image" content="https://arnaldosepulveda.com/og.png">
+<meta property="article:published_time" content="2026-09-21">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A working AI system can still be the wrong intervention">
+<meta name="twitter:description" content="Why enterprise AI initiatives should begin with workflow diagnosis, evidence, and intervention selection before deciding what technology to build.">
+<meta name="twitter:image" content="https://arnaldosepulveda.com/og.png">
+<link rel="stylesheet" href="/writing/article.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"A working AI system can still be the wrong intervention","description":"Why enterprise AI initiatives should begin with workflow diagnosis, evidence, and intervention selection before deciding what technology to build.","author":{"@type":"Person","name":"Arnaldo Sepulveda","url":"https://arnaldosepulveda.com/"},"datePublished":"2026-09-21","dateModified":"2026-09-21","mainEntityOfPage":"https://arnaldosepulveda.com/writing/a-working-ai-system-can-still-be-the-wrong-intervention/","image":"https://arnaldosepulveda.com/og.png"}</script>
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner"><a class="who" href="/">Arnaldo Sepulveda</a><nav aria-label="Primary"><a href="/">Home</a><a href="/writing/">Writing</a><a href="https://getkeystone.ai/">Keystone</a></nav></div></header>
+<main>
+<header class="article-head">
+  <div class="eyebrow">Applied AI · Intervention design</div>
+  <h1>A working AI system can still be the wrong intervention</h1>
+  <p class="dek">Why enterprise AI work should begin with workflow diagnosis, evidence, and intervention selection before deciding what to build.</p>
+  <div class="meta"><time datetime="2026-09-21">September 21, 2026</time> · 12 minute read</div>
+</header>
+<article>
+<p>An operational problem appears.</p>
+
+<p>Someone proposes AI.</p>
+
+<p>A pilot gets funded. The demo works. The system reaches production.</p>
+
+<p>Months later, nobody can clearly show that the operation improved.</p>
+
+<p>The model may be responding. The integration may be stable. Users may even like the interface. The engineering can be competent and the implementation can work as designed.</p>
+
+<p>So where did the reasoning fail?</p>
+
+<p>Sometimes it failed before implementation. The organization moved from a visible symptom to a preferred technology without establishing what caused the problem, where the constraint occurred, or what kind of intervention the evidence justified.</p>
+
+<p>My previous note, <a href="/writing/ai-availability-is-not-a-business-case/">AI availability is not a business case</a>, asked whether AI should be used at all. The next question is more practical: given a real operational problem, how should an organization decide what to do about it?</p>
+
+<p>The most important design decision may happen before architecture. It is the decision about what kind of intervention to make.</p>
+
+<h2>The symptom is not the diagnosis</h2>
+
+<p>Organizations experience problems as symptoms:</p>
+
+<ul>
+  <li>cases take too long;</li>
+  <li>agents escalate too often;</li>
+  <li>customers repeat information;</li>
+  <li>people cannot find answers;</li>
+  <li>handoffs are slow;</li>
+  <li>the backlog keeps growing.</li>
+</ul>
+
+<p>These observations matter. None of them identifies a cause.</p>
+
+<p>High handling time could come from missing knowledge, poor search, fragmented systems, bad routing, duplicate data entry, an approval queue, incomplete telemetry, ambiguous process ownership, a training gap, or a problem that genuinely requires expert judgment.</p>
+
+<p>Several mechanisms can produce the same visible outcome. One mechanism can also produce several symptoms in different parts of the operation.</p>
+
+<p>More than twelve years in Technical Support and Escalations at Genesys taught me not to accept the first visible symptom as the cause. Across complex contact-center systems, integrations, migrations, go-lives, and production incidents, the reported failure was often only the first clue.</p>
+
+<p>A timeout could originate in the application, the network, a data dependency, capacity, or configuration. The practical task was to narrow the failure domain with evidence.</p>
+
+<p>That discipline carries into intervention selection: <strong>identify the mechanism before choosing the remedy.</strong></p>
+
+<h2>Before drawing an AI architecture, draw the work</h2>
+
+<p>Operational problems become easier to reason about when the current workflow is made explicit.</p>
+
+<p>Who starts the work? What information do they have at that point? Which systems do they touch? Where is information copied manually? Where does work wait? Where do people make decisions? Which decisions follow known rules, and which require judgment?</p>
+
+<p>Then look at the transitions.</p>
+
+<p>Where are the handoffs? What context is lost between them? Where do errors first occur, and where do they finally become visible? What happens after an escalation? Does the next person receive evidence, or do they have to reconstruct the investigation?</p>
+
+<p>A workflow diagram is useful because it forces the conversation away from an imagined AI feature and toward the actual path of work. It can reveal that the longest delay is a queue, not an analysis task. It can show that employees spend two minutes interpreting a request and twenty minutes waiting for access to another system. It can show that a customer repeats information because identity and interaction context do not cross a channel boundary.</p>
+
+<p>Those findings change the intervention space.</p>
+
+<p>If the constraint is a policy approval, faster text generation will not remove it. If the constraint is missing account context, a system integration may matter more than a model. If work is routed to the wrong team, classification might help, but so might correcting deterministic routing rules or the data they depend on.</p>
+
+<p>The workflow map is not the diagnosis by itself. It is a way to locate observations, decisions, queues, controls, and dependencies so competing explanations can be tested.</p>
+
+<h2>Establish a baseline before proposing improvement</h2>
+
+<p>"People say this is painful" is a reason to investigate. It is not enough to evaluate an intervention.</p>
+
+<p>A baseline establishes what is happening before the system changes. Depending on the workflow, that might include handling time, resolution time, queue time, escalation rate, repeat contact, transfer count, search attempts, backlog age, rework, abandonment, analyst effort, or customer effort.</p>
+
+<p>Not every operation needs every metric. The measurement should follow the mechanism being investigated.</p>
+
+<p>If the hypothesis is that poor knowledge retrieval drives escalation, measure how often analysts search, what they find, where searches fail, and whether failed searches correlate with escalation. If the hypothesis is that fragmented systems extend handling time, measure the systems touched, context switching, manual copying, and time spent waiting for data.</p>
+
+<p>The baseline serves two purposes.</p>
+
+<p>First, it shows whether the problem is material. A frequently discussed frustration may affect very little work. A less visible delay may account for most of the backlog.</p>
+
+<p>Second, it makes later evaluation possible. Without a credible before state, a successful deployment can be confused with a successful intervention.</p>
+
+<p>In current Keystone research, I am applying this discipline more explicitly by examining baselines, competing explanations, retrieval behavior, authorization, and evaluation before deciding whether an intervention is warranted. The point is to preserve the possibility that the evidence leads somewhere else.</p>
+
+<h2>Separate the cause from the proposed mechanism</h2>
+
+<p>Consider a familiar statement:</p>
+
+<blockquote class="callout"><p>Support analysts spend too long resolving known issues.</p></blockquote>
+
+<p>That description can support several different diagnoses.</p>
+
+<h3>Diagnosis A: the knowledge does not exist</h3>
+
+<p>The investigation was completed, but the resolution was never captured in an authoritative form. The intervention is knowledge creation, ownership, and maintenance. A model cannot reliably retrieve information that the organization never preserved.</p>
+
+<h3>Diagnosis B: the knowledge exists, but search is poor</h3>
+
+<p>The answer is present and accessible, but analysts cannot find it using the vocabulary available to them. Better indexing, metadata, lexical retrieval, semantic retrieval, or ranking may address the failure. Generation may add no value.</p>
+
+<h3>Diagnosis C: the knowledge is spread across systems</h3>
+
+<p>The resolution depends on account data, product telemetry, prior interactions, and a technical note stored in separate places. The core intervention may be integration and context aggregation. Summarization could help after the evidence is assembled, but it does not remove the fragmentation.</p>
+
+<h3>Diagnosis D: analysts repeatedly execute known rules</h3>
+
+<p>The work consists of collecting defined fields, checking fixed conditions, and selecting a known path. Deterministic automation or conventional workflow software may be cheaper, more observable, and easier to control than a probabilistic system.</p>
+
+<h3>Diagnosis E: the input is unstructured and variable</h3>
+
+<p>Customers describe the same issue in many ways, documents use inconsistent formats, or relevant evidence must be extracted from free text. AI-assisted classification, extraction, or interpretation may now be justified because the ambiguity is part of the failure mechanism.</p>
+
+<h3>Diagnosis F: the next action depends on intermediate evidence</h3>
+
+<p>The system must gather evidence, inspect what came back, choose among approved next steps, and stop or escalate when defined conditions are met. Bounded agentic behavior may be justified if variable sequencing creates enough value to offset the added state, permissions, and failure modes.</p>
+
+<p>The initial symptom is the same in every case. The appropriate intervention is not.</p>
+
+<h2>Compare interventions before selecting one</h2>
+
+<p>The intervention space is wider than a feature comparison between models.</p>
+
+<p>It can include process change, knowledge improvement, data correction, system integration, deterministic automation, conventional software, analytics and decision support, retrieval, AI-assisted interpretation or generation, and bounded agentic behavior.</p>
+
+<p>These are not substitutes ranked from least advanced to most advanced. They address different failure mechanisms.</p>
+
+<p>For each plausible option, I want to know:</p>
+
+<ul>
+  <li>which diagnosed mechanism it addresses;</li>
+  <li>what operational effect it is expected to produce;</li>
+  <li>what dependencies must be true;</li>
+  <li>how complex it is to implement and operate;</li>
+  <li>whether it is reversible;</li>
+  <li>whether its behavior and effect are observable;</li>
+  <li>how it can fail;</li>
+  <li>what security and authorization boundaries apply;</li>
+  <li>what it will cost to operate and maintain;</li>
+  <li>what evidence would support the choice;</li>
+  <li>what evidence would falsify the hypothesis.</li>
+</ul>
+
+<p>A good intervention decision explains not only why one option was chosen, but why plausible alternatives were rejected.</p>
+
+<p>That record does not need to become a large governance exercise. A concise decision can still state the diagnosis, assumptions, alternatives, expected effect, risks, and test. The discipline matters because implementation creates momentum. Once a team has built a pilot, evidence that points to a simpler solution can start to feel like a threat to progress rather than useful information.</p>
+
+<p>Intervention selection identifies the mechanism that should address the diagnosed problem. Implementation determines how that mechanism enters the real workflow, including its interfaces, controls, authorization, observability, failure handling, and human responsibilities.</p>
+
+<h2>AI should earn its place in the architecture</h2>
+
+<p>Selecting AI for one part of an intervention does not make every part of the architecture probabilistic.</p>
+
+<p>Permissions, eligibility, fixed thresholds, known routing rules, state transitions, and deterministic controls should usually remain explicit. An AI component may extract an attribute from text, but software can enforce what that attribute permits. A model may summarize evidence, but authorization should determine which evidence it can receive.</p>
+
+<p><strong>Put probabilistic behavior where ambiguity exists. Keep deterministic controls where the rule is already known.</strong></p>
+
+<p>This boundary makes the system easier to evaluate. It also makes failures easier to attribute. If one component retrieves evidence, another enforces authorization, and another generates a summary, the team can inspect which mechanism produced the observed result.</p>
+
+<h2>The intervention can be mixed</h2>
+
+<p>"AI or no AI" is often the wrong choice because a strong enterprise intervention can combine several mechanisms.</p>
+
+<p>Imagine a customer issue arriving through a digital channel.</p>
+
+<p>Integration gathers the account, product, and interaction context. Deterministic logic applies known rules, including which records are authorized. Retrieval handles evidence discovery. An LLM interprets semantically variable evidence and identifies unresolved questions. A human makes the consequential decision. Workflow automation records and routes the result. Observability captures what happened at each boundary.</p>
+
+<p>The value does not belong to the LLM alone.</p>
+
+<p>The architecture is mixed because the failure mechanisms are different. Fragmented context, evidence discovery, semantic ambiguity, known controls, consequential judgment, execution, and accountability do not call for the same mechanism.</p>
+
+<p>Calling the whole intervention an AI assistant hides the architecture that makes it useful.</p>
+
+<p>The right intervention is often an architecture of mechanisms, each placed where its behavior fits the problem.</p>
+
+<h2>Define success at four levels</h2>
+
+<p>Evaluation becomes clearer when success is separated into four levels.</p>
+
+<h3>Component performance</h3>
+
+<p>Did retrieval return relevant evidence? Did the classifier meet its defined accuracy threshold? Was generation latency acceptable?</p>
+
+<h3>System behavior</h3>
+
+<p>Did authorization work? Did the workflow complete correctly? Were failures handled? Was evidence sufficient for the output? Did the system stop when it should?</p>
+
+<h3>Workflow outcome</h3>
+
+<p>Did resolution time, escalation rate, analyst effort, repeat work, or another relevant operational measure improve?</p>
+
+<h3>Business outcome</h3>
+
+<p>Did the operational improvement create capacity, improve service level, reduce avoidable cost, change customer outcomes, or affect revenue or risk where the evidence supports that connection?</p>
+
+<p>Component performance is not system performance. System performance is not workflow improvement. Workflow improvement is not automatically business value.</p>
+
+<p>If an assistant saves time, the organization still needs a realization mechanism. Perhaps the team absorbs more demand without hiring. Perhaps backlog falls, service levels improve, or experts spend more time on novel problems. Perhaps fewer errors avoid rework.</p>
+
+<p>Those are testable paths from operational change to business value. Without such a path, a time-saving estimate remains a technical or workflow claim, not a financial result.</p>
+
+<h2>Decide what would make the work stop</h2>
+
+<p>Intervention selection should include exit criteria, not only success criteria.</p>
+
+<p>Before implementation, define the evidence that would justify stopping, modifying, rolling back, declining to scale, or replacing the intervention with a simpler mechanism:</p>
+
+<ul>
+  <li>the workflow does not measurably improve;</li>
+  <li>operating cost exceeds the demonstrated benefit;</li>
+  <li>users bypass the system;</li>
+  <li>evidence quality is insufficient;</li>
+  <li>authorization or control risk is unacceptable;</li>
+  <li>a deterministic alternative performs equally well;</li>
+  <li>the observed improvement cannot be attributed to the intervention;</li>
+  <li>the operational complexity exceeds the value created.</li>
+</ul>
+
+<p>I see this as part of honest evaluation. A pilot should not exist only to accumulate reasons for deployment. It should reduce uncertainty about the diagnosis, the mechanism, and the expected outcome.</p>
+
+<p>Sometimes the result will support broader implementation. Sometimes it will reveal that the workflow must change first. Sometimes it will show that retrieval is enough, that a data correction removes the problem, or that the effect is too small to justify the operating burden.</p>
+
+<p>Stopping under those conditions is not a failed experiment. It is the intervention process working.</p>
+
+<h2>The real capability is disciplined intervention selection</h2>
+
+<p>AI engineering is necessary when AI is the justified mechanism.</p>
+
+<p>It cannot, by itself, establish that the problem was diagnosed correctly, that AI was the best intervention, that the workflow improved, or that the organization obtained value.</p>
+
+<p>Strong technical execution applied to the wrong problem can still produce a failed investment. The system can be reliable, polished, and well evaluated at the component level while leaving the operational constraint untouched.</p>
+
+<p>The broader capability is the ability to move through a complete chain of reasoning:</p>
+
+<div class="metrics">symptom<br>→ evidence<br>→ diagnosis<br>→ intervention options<br>→ decision<br>→ implementation<br>→ evaluation<br>→ operational outcome<br>→ business outcome</div>
+
+<p>Every arrow is a claim that can fail.</p>
+
+<p>The symptom may not identify the cause. The evidence may be incomplete. The chosen intervention may not affect the diagnosed mechanism. The implementation may not behave as intended. The changed workflow may not create a business result.</p>
+
+<p>That is why the work begins before architecture and continues after deployment.</p>
+
+<p>It requires being willing to conclude that the right intervention is process change, knowledge improvement, integration, deterministic software, analytics, or retrieval.</p>
+
+<p>And when the evidence does justify AI, it gives the engineering team something much more useful than a mandate to build.</p>
+
+<p>It gives them a diagnosed mechanism, an operational hypothesis, a place in the workflow, explicit alternatives, measurable outcomes, and a reason for the technology to be there.</p>
+
+<h3>Related engineering notes</h3>
+<ul>
+  <li><a href="/writing/ai-availability-is-not-a-business-case/">AI availability is not a business case.</a><br>Why technical capability does not establish that a workflow needs AI.</li>
+  <li><a href="/writing/the-knowledge-was-already-there/">The knowledge was already there. The system to use it was not.</a><br>How repeated support investigations led me toward retrieval, evidence quality, and operational knowledge systems.</li>
+  <li><a href="/writing/evaluation-artifacts-vs-demos/">What evaluation artifacts taught me that demos never could</a><br>Why retained failures and bounded claims belong in the engineering loop.</li>
+  <li><a href="/writing/from-genesys-to-keystone/">From Genesys to Keystone: enterprise rigor on the LLM substrate</a><br>What 12+ years in enterprise production systems carried into my current AI engineering work.</li>
+</ul>
+</article>
+<footer class="article-footer">More engineering notes in <a href="/writing/">Writing</a> · <a href="/">arnaldosepulveda.com</a></footer>
+</main>
+</body>
+</html>
