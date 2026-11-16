@@ -1,6 +1,6 @@
 # arnaldosepulveda.com
 
-Personal site for [Arnaldo Sepulveda](https://arnaldosepulveda.com/), who works on enterprise CX systems and independent applied AI through Keystone Applied Intelligence. It's the canonical personal page that links his primary public profiles (LinkedIn, GitHub, Keystone). A single static HTML page, deployed via Cloudflare Pages.
+Personal site for [Arnaldo Sepulveda](https://arnaldosepulveda.com/), who does independent applied AI and data work on operational workflows through Keystone Applied Intelligence. It's the canonical personal page that links his primary public profiles (LinkedIn, GitHub, Keystone). A single static HTML page, deployed via Cloudflare Pages.
 
 ## Stack
 
